@@ -7,8 +7,8 @@ export default class VanillaCalendar {
 		this.month = this.day.getMonth();
 		this.today = this.day.getDate();
 
-		this.selectYear = this.year;
-		this.selectMonth = this.month;
+		this.selectedYear = this.year;
+		this.selectedMonth = this.month;
 
 		this.name = {
 			months: {
@@ -52,14 +52,14 @@ export default class VanillaCalendar {
 		`;
 	}
 
-	writeMonth() {
-		const calendarMonth = this.calendar.querySelector('.vanilla-calendar-month');
+	createMonth() {
+		const monthEl = this.calendar.querySelector('.vanilla-calendar-month');
 
-		calendarMonth.innerText = `${this.name.months[this.lang][this.selectMonth]} ${this.selectYear}`;
+		monthEl.innerText = `${this.name.months[this.lang][this.selectedMonth]} ${this.selectedYear}`;
 	}
 
-	writeWeek() {
-		const calendarWeek = this.calendar.querySelector('.vanilla-calendar-week');
+	createWeek() {
+		const weekEl = this.calendar.querySelector('.vanilla-calendar-week');
 
 		for (let i = 0; i < this.name.week[this.lang].length; i++) {
 			const weekDayName = this.name.week[this.lang][i];
@@ -67,67 +67,125 @@ export default class VanillaCalendar {
 
 			weekDay.className = 'vanilla-calendar-week__day';
 			weekDay.innerText = `${weekDayName}`;
-			calendarWeek.append(weekDay);
+			weekEl.append(weekDay);
 		}
 	}
 
-	writeDays() {
-		this.firstDay = new Date(this.selectYear, this.selectMonth, 1);
-		this.firstWeekDay = Number((this.firstDay.getDay() !== 0 ? this.firstDay.getDay() : 7) - 1);
-		this.monthDays = new Date(this.selectYear, this.selectMonth + 1, 0).getDate();
+	createDays() {
+		const firstDay = new Date(this.selectedYear, this.selectedMonth, 1);
+		const firstDayWeek = Number((firstDay.getDay() !== 0 ? firstDay.getDay() : 7) - 1);
+		const daysSelectedMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
 
-		const calendarDays = this.calendar.querySelector('.vanilla-calendar-days');
-		calendarDays.innerHTML = '';
+		const daysEl = this.calendar.querySelector('.vanilla-calendar-days');
+		daysEl.innerHTML = '';
 
-		for (let i = 0; i < this.firstWeekDay; i++) {
-			const day = document.createElement('span');
+		const prevMonth = () => {
+			const prevMonthDays = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
+			let dataDay = prevMonthDays - firstDayWeek;
+			let year = this.selectedYear;
+			let month = 0;
 
-			day.className = 'vanilla-calendar-day vanilla-calendar-day_disabled';
-			calendarDays.append(day);
-		}
+			for (let i = 0; i < firstDayWeek; i++) {
+				const day = document.createElement('span');
 
-		for (let i = 1; i <= this.monthDays; i++) {
-			const day = document.createElement('span');
-			const dataDay = i < 10 ? `0${i}` : i;
-			const dataMonth = this.selectMonth < 10 ? `0${this.selectMonth + 1}` : this.selectMonth + 1;
+				if (this.selectedMonth === 0) {
+					month = this.name.months[this.lang].length;
+					year = this.selectedYear - 1;
+				} else if (this.selectedMonth < 10) {
+					month = `0${this.selectedMonth}`;
+				} else {
+					month = this.selectedMonth;
+				}
 
-			day.className = 'vanilla-calendar-day';
-			day.innerText = `${i}`;
-			day.dataset.calendarDate = `${this.selectYear}-${dataMonth}-${dataDay}`;
+				dataDay += 1;
 
-			if (i === this.today && this.selectMonth === this.month && this.selectYear === this.year) {
-				day.classList.add('vanilla-calendar-day_today');
+				day.className = 'vanilla-calendar-day vanilla-calendar-day_prev';
+				day.innerText = `${dataDay}`;
+				day.dataset.calendarDate = `${year}-${month}-${dataDay}`;
+				daysEl.append(day);
 			}
+		};
 
-			calendarDays.append(day);
-		}
-	}
+		const selectedMonth = () => {
+			const year = this.selectedYear;
+			let month = 0;
 
-	update() {
-		this.writeMonth();
-		this.writeDays();
+			for (let i = 1; i <= daysSelectedMonth; i++) {
+				const day = document.createElement('span');
+				const dataDay = i < 10 ? `0${i}` : i;
+
+				if (this.selectedMonth < 10) {
+					month = `0${this.selectedMonth}`;
+				} else {
+					month = this.selectedMonth;
+				}
+
+				day.className = 'vanilla-calendar-day';
+				day.innerText = `${i}`;
+				day.dataset.calendarDate = `${year}-${month}-${dataDay}`;
+
+				if (i === this.today && this.selectedMonth === this.month && this.selectedYear === this.year) {
+					day.classList.add('vanilla-calendar-day_today');
+				}
+
+				daysEl.append(day);
+			}
+		};
+
+		const nextMonth = () => {
+			const total = firstDayWeek + daysSelectedMonth;
+			const rows = Math.ceil(total / this.name.week[this.lang].length);
+			const nextDays = (this.name.week[this.lang].length * rows) - total;
+
+			let year = this.selectedYear;
+			let month = 0;
+
+			for (let i = 1; i <= nextDays; i++) {
+				const day = document.createElement('span');
+				const dataDay = i < 10 ? `0${i}` : i;
+
+				if ((this.selectedMonth + 1) === this.name.months[this.lang].length) {
+					month = '01';
+					year = this.selectedYear + 1;
+				} else if ((this.selectedMonth + 2) < 10) {
+					month = `0${this.selectedMonth + 2}`;
+				} else {
+					month = this.selectedMonth + 2;
+				}
+
+				day.className = 'vanilla-calendar-day vanilla-calendar-day_next';
+				day.innerText = `${i}`;
+				day.dataset.calendarDate = `${year}-${month}-${dataDay}`;
+				daysEl.append(day);
+			}
+		};
+
+		prevMonth();
+		selectedMonth();
+		nextMonth();
 	}
 
 	changeMonth(element) {
-		const lasMonth = this.name.months[this.lang].length - 1;
+		const lastMonth = this.name.months[this.lang].length - 1;
 
 		if (element.closest('.vanilla-calendar-arrow_prev')) {
-			if (this.selectMonth !== 0) {
-				this.selectMonth -= 1;
+			if (this.selectedMonth !== 0) {
+				this.selectedMonth -= 1;
 			} else {
-				this.selectYear -= 1;
-				this.selectMonth = lasMonth;
+				this.selectedYear -= 1;
+				this.selectedMonth = lastMonth;
 			}
 		} else if (element.closest('.vanilla-calendar-arrow_next')) {
-			if (this.selectMonth !== lasMonth) {
-				this.selectMonth += 1;
+			if (this.selectedMonth !== lastMonth) {
+				this.selectedMonth += 1;
 			} else {
-				this.selectYear += 1;
-				this.selectMonth = 0;
+				this.selectedYear += 1;
+				this.selectedMonth = 0;
 			}
 		}
 
-		this.update();
+		this.createMonth();
+		this.createDays();
 	}
 
 	hasClick() {
@@ -138,12 +196,16 @@ export default class VanillaCalendar {
 		});
 	}
 
+	update() {
+		this.createMonth();
+		this.createDays();
+	}
+
 	init() {
-		// eslint-disable-next-line no-console
 		this.createDOM();
-		this.writeMonth();
-		this.writeWeek();
-		this.writeDays();
+		this.createMonth();
+		this.createWeek();
+		this.createDays();
 		this.hasClick();
 	}
 }

@@ -18,6 +18,7 @@
 	}
 
 	&-arrow {
+		display: block;
 		font-size: 0;
 		width: 14px;
 		height: 14px;
@@ -30,10 +31,6 @@
 
 		&_prev {
 			transform: rotateZ(180deg);
-		}
-
-		&_next {
-			//
 		}
 	}
 
@@ -98,6 +95,16 @@
 			&:hover {
 				background-color: lightseagreen;
 				color: white;
+			}
+		}
+
+		&_prev,
+		&_next {
+			background-color: white;
+			color: lightgrey;
+
+			&:hover {
+				background-color: white;
 			}
 		}
 
