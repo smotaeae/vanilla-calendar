@@ -1,0 +1,113 @@
+.vanilla-calendar {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	padding: 12px;
+	border-radius: 4px;
+
+	&-header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		padding: 0 4px;
+	}
+
+	&-content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&-arrow {
+		font-size: 0;
+		width: 14px;
+		height: 14px;
+		background-color: black;
+		mask: url('@/img/arrow.svg') no-repeat 50% 50%;
+
+		&:hover {
+			background-color: lightseagreen;
+		}
+
+		&_prev {
+			transform: rotateZ(180deg);
+		}
+
+		&_next {
+			//
+		}
+	}
+
+	&-month {
+		flex-grow: 1;
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 700;
+		color: black;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		padding: 0 15px;
+	}
+
+	&-week {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		column-gap: 5px;
+
+		&__day {
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: 700;
+			color: lightseagreen;
+			width: 25px;
+			height: 25px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	&-days {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		column-gap: 5px;
+	}
+
+	&-day {
+		padding-top: 1px;
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: 400;
+		width: 25px;
+		height: 25px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		background-color: white;
+		cursor: pointer;
+
+		&:hover {
+			background-color: whitesmoke;
+		}
+
+		&_today {
+			background-color: lightseagreen;
+			color: white;
+
+			&:hover {
+				background-color: lightseagreen;
+				color: white;
+			}
+		}
+
+		&_disabled {
+			background-color: white;
+			pointer-events: none;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+	}
+}

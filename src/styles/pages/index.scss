@@ -3,3 +3,30 @@
 @import '@/styles/mixin.scss';
 
 // Components
+@import '@/styles/components/vanilla-calendar.scss';
+
+.main-content {
+	display: block;
+	padding: 50px 0;
+	background-color: #efefef;
+}
+
+.section {
+	@include container;
+
+	position: relative;
+	margin: 20px 0 30px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.grid {
+	display: grid;
+	gap: 10px;
+	justify-content: center;
+}

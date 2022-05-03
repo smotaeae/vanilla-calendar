@@ -20,7 +20,7 @@
     "url": "https://frontend.uvarov.tech"
   },
   "license": "MIT",
-  "main": "src/js/modules/calendar.js",
+  "main": "src/js/modules/vanilla-calendar.js",
   "scripts": {
     "start": "node ./utils/entry && cross-env NODE_ENV=development TEMP=false webpack-dashboard -m -- webpack serve --config ./config/webpack.dev.js",
     "dev": "node ./utils/entry && cross-env NODE_ENV=development TEMP=false webpack --config ./config/webpack.dev.js",
