@@ -8,10 +8,16 @@ export default class VanillaCalendar {
 			selecting: option.settings?.selecting ?? true,
 			weekend: option.settings?.weekend ?? true,
 			today: option.settings?.today ?? true,
+			range: {
+				min: option.settings?.range?.min ?? null,
+				max: option.settings?.range?.max ?? null,
+				values: option.settings?.range?.values ?? null,
+			},
 			selected: {
 				date: option.settings?.selected?.date ?? null,
 				month: option.settings?.selected?.month ? option.settings.selected.month - 1 : null,
 				year: option.settings?.selected?.year ?? null,
+				holidays: option.settings?.selected?.holidays ?? null,
 			},
 		};
 
@@ -154,6 +160,15 @@ export default class VanillaCalendar {
 					dayEl.classList.add('vanilla-calendar-day_weekend');
 				}
 
+				// if holidays
+				if (Array.isArray(this.settings.selected.holidays)) {
+					this.settings.selected.holidays.forEach((holiday) => {
+						if (holiday === date) {
+							dayEl.classList.add('vanilla-calendar-day_holiday');
+						}
+					});
+				}
+
 				// if today
 				const thisToday = i === this.day.getDate();
 				const thisMonth = this.selectedMonth === this.day.getMonth();
@@ -166,6 +181,24 @@ export default class VanillaCalendar {
 				// if selected day
 				if (this.selectedDate === date) {
 					dayEl.classList.add('vanilla-calendar-day_selected');
+				}
+
+				// if range min/max
+				if (this.settings.range.min > date || this.settings.range.max < date) {
+					dayEl.classList.add('vanilla-calendar-day_disabled');
+				}
+
+				// if range values
+				if (Array.isArray(this.settings.range.values)) {
+					if (!this.settings.range.min && !this.settings.range.max) {
+						dayEl.classList.add('vanilla-calendar-day_disabled');
+					}
+
+					this.settings.range.values.forEach((value) => {
+						if (value === date) {
+							dayEl.classList.remove('vanilla-calendar-day_disabled');
+						}
+					});
 				}
 
 				daysEl.append(dayEl);

@@ -80,7 +80,8 @@
 				cursor: pointer;
 
 				&_prev,
-				&_next {
+				&_next,
+				&_disabled {
 					cursor: default;
 				}
 			}
@@ -108,11 +109,13 @@
 		}
 
 		&_today {
+			background-color: aliceblue;
 			color: lightseagreen;
 			font-weight: 600;
 
 			&:hover {
 				color: lightseagreen;
+				background-color: aliceblue;
 			}
 		}
 
@@ -126,11 +129,13 @@
 			}
 		}
 
-		&_weekend {
+		&_weekend,
+		&_holiday {
 			color: coral;
 
 			&#{$day}_today {
-				color: lightseagreen;
+				color: coral;
+				background-color: seashell;
 			}
 
 			&#{$day}_selected {
@@ -140,21 +145,15 @@
 		}
 
 		&_prev,
-		&_next {
-			background-color: white;
-			color: lightgrey;
-
-			&:hover {
-				background-color: white;
-			}
-		}
-
+		&_next,
 		&_disabled {
 			background-color: white;
+			color: lightgrey;
 			pointer-events: none;
 
 			&:hover {
 				background-color: white;
+				color: lightgrey;
 			}
 		}
 	}
