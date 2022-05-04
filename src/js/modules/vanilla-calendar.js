@@ -1,14 +1,19 @@
 export default class VanillaCalendar {
 	constructor(option) {
 		this.calendar = option.calendar;
-		this.lang = option.lang ?? 'eng';
 		this.day = new Date();
-		this.year = this.day.getFullYear();
-		this.month = this.day.getMonth();
-		this.today = this.day.getDate();
 
-		this.selectedYear = this.year;
-		this.selectedMonth = this.month;
+		this.settings = {
+			lang: option.settings?.lang ?? 'ru',
+			selecting: option.settings?.selecting ?? true,
+			weekend: option.settings?.weekend ?? true,
+			today: option.settings?.today ?? true,
+			selected: {
+				date: option.settings?.selected?.date ?? null,
+				month: option.settings?.selected?.month ? option.settings.selected.month - 1 : null,
+				year: option.settings?.selected?.year ?? null,
+			},
+		};
 
 		this.name = {
 			months: {
@@ -37,12 +42,12 @@ export default class VanillaCalendar {
 			<div class="vanilla-calendar-header">
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_prev">
-					${this.name.arrow.prev[this.lang]}
+					${this.name.arrow.prev[this.settings.lang]}
 				</button>
 				<b class="vanilla-calendar-month"></b>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
-					${this.name.arrow.prev[this.lang]}
+					${this.name.arrow.prev[this.settings.lang]}
 				</button>
 			</div>
 			<div class="vanilla-calendar-content">
@@ -52,20 +57,43 @@ export default class VanillaCalendar {
 		`;
 	}
 
+	selectingDate() {
+		this.selectedDate = null;
+		this.selectedMonth = this.day.getMonth();
+		this.selectedYear = this.day.getFullYear();
+
+		if (this.settings.selected.date !== null) {
+			this.selectedDate = this.settings.selected.date;
+		}
+
+		if (this.settings.selected.month !== null && this.settings.selected.month >= 0 && this.settings.selected.month < 12) {
+			this.selectedMonth = this.settings.selected.month;
+		}
+
+		if (this.settings.selected.year !== null && this.settings.selected.year >= 1970 && this.settings.selected.year <= 9999) {
+			this.selectedYear = this.settings.selected.year;
+		}
+	}
+
 	createMonth() {
 		const monthEl = this.calendar.querySelector('.vanilla-calendar-month');
 
-		monthEl.innerText = `${this.name.months[this.lang][this.selectedMonth]} ${this.selectedYear}`;
+		monthEl.innerText = `${this.name.months[this.settings.lang][this.selectedMonth]} ${this.selectedYear}`;
 	}
 
 	createWeek() {
 		const weekEl = this.calendar.querySelector('.vanilla-calendar-week');
 
-		for (let i = 0; i < this.name.week[this.lang].length; i++) {
-			const weekDayName = this.name.week[this.lang][i];
+		for (let i = 0; i < this.name.week[this.settings.lang].length; i++) {
+			const weekDayName = this.name.week[this.settings.lang][i];
 			const weekDay = document.createElement('span');
 
 			weekDay.className = 'vanilla-calendar-week__day';
+
+			if (this.settings.weekend && (i === 5 || i === 6)) {
+				weekDay.classList.add('vanilla-calendar-week__day_weekend');
+			}
+
 			weekDay.innerText = `${weekDayName}`;
 			weekEl.append(weekDay);
 		}
@@ -79,84 +107,95 @@ export default class VanillaCalendar {
 		const daysEl = this.calendar.querySelector('.vanilla-calendar-days');
 		daysEl.innerHTML = '';
 
+		if (this.settings.selecting) daysEl.classList.add('vanilla-calendar-days_selecting');
+
 		const prevMonth = () => {
 			const prevMonthDays = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
-			let dataDay = prevMonthDays - firstDayWeek;
+			let day = prevMonthDays - firstDayWeek;
 			let year = this.selectedYear;
-			let month = 0;
+			let month = this.selectedMonth;
+
+			if (this.selectedMonth === 0) {
+				month = this.name.months[this.settings.lang].length;
+				year = this.selectedYear - 1;
+			} else if (this.selectedMonth < 10) {
+				month = `0${this.selectedMonth}`;
+			}
 
 			for (let i = 0; i < firstDayWeek; i++) {
-				const day = document.createElement('span');
+				const dayEl = document.createElement('span');
 
-				if (this.selectedMonth === 0) {
-					month = this.name.months[this.lang].length;
-					year = this.selectedYear - 1;
-				} else if (this.selectedMonth < 10) {
-					month = `0${this.selectedMonth}`;
-				} else {
-					month = this.selectedMonth;
-				}
+				day += 1;
 
-				dataDay += 1;
-
-				day.className = 'vanilla-calendar-day vanilla-calendar-day_prev';
-				day.innerText = `${dataDay}`;
-				day.dataset.calendarDate = `${year}-${month}-${dataDay}`;
-				daysEl.append(day);
+				dayEl.className = 'vanilla-calendar-day vanilla-calendar-day_prev';
+				dayEl.innerText = `${day}`;
+				dayEl.dataset.calendarDate = `${year}-${month}-${day}`;
+				daysEl.append(dayEl);
 			}
 		};
 
 		const selectedMonth = () => {
 			const year = this.selectedYear;
-			let month = 0;
+			const month = this.selectedMonth < 10 ? `0${this.selectedMonth + 1}` : this.selectedMonth + 1;
 
 			for (let i = 1; i <= daysSelectedMonth; i++) {
-				const day = document.createElement('span');
-				const dataDay = i < 10 ? `0${i}` : i;
+				const dayEl = document.createElement('span');
+				const day = i < 10 ? `0${i}` : i;
 
-				if (this.selectedMonth < 10) {
-					month = `0${this.selectedMonth}`;
-				} else {
-					month = this.selectedMonth;
+				const date = `${year}-${month}-${day}`;
+				const dayID = new Date(date).getDay();
+
+				dayEl.className = 'vanilla-calendar-day';
+				dayEl.innerText = `${i}`;
+				dayEl.dataset.calendarDate = date;
+
+				// if weekend
+				if (this.settings.weekend && (dayID === 6 || dayID === 0)) {
+					dayEl.classList.add('vanilla-calendar-day_weekend');
 				}
 
-				day.className = 'vanilla-calendar-day';
-				day.innerText = `${i}`;
-				day.dataset.calendarDate = `${year}-${month}-${dataDay}`;
+				// if today
+				const thisToday = i === this.day.getDate();
+				const thisMonth = this.selectedMonth === this.day.getMonth();
+				const thisYear = this.selectedYear === this.day.getFullYear();
 
-				if (i === this.today && this.selectedMonth === this.month && this.selectedYear === this.year) {
-					day.classList.add('vanilla-calendar-day_today');
+				if (this.settings.today && thisToday && thisMonth && thisYear) {
+					dayEl.classList.add('vanilla-calendar-day_today');
 				}
 
-				daysEl.append(day);
+				// if selected day
+				if (this.selectedDate === date) {
+					dayEl.classList.add('vanilla-calendar-day_selected');
+				}
+
+				daysEl.append(dayEl);
 			}
 		};
 
 		const nextMonth = () => {
 			const total = firstDayWeek + daysSelectedMonth;
-			const rows = Math.ceil(total / this.name.week[this.lang].length);
-			const nextDays = (this.name.week[this.lang].length * rows) - total;
+			const rows = Math.ceil(total / this.name.week[this.settings.lang].length);
+			const nextDays = (this.name.week[this.settings.lang].length * rows) - total;
 
 			let year = this.selectedYear;
-			let month = 0;
+			let month = this.selectedMonth + 2;
+
+			if ((this.selectedMonth + 1) === this.name.months[this.settings.lang].length) {
+				month = '01';
+				year = this.selectedYear + 1;
+			} else if ((this.selectedMonth + 2) < 10) {
+				month = `0${this.selectedMonth + 2}`;
+			}
 
 			for (let i = 1; i <= nextDays; i++) {
-				const day = document.createElement('span');
-				const dataDay = i < 10 ? `0${i}` : i;
+				const dayEl = document.createElement('span');
+				const day = i < 10 ? `0${i}` : i;
 
-				if ((this.selectedMonth + 1) === this.name.months[this.lang].length) {
-					month = '01';
-					year = this.selectedYear + 1;
-				} else if ((this.selectedMonth + 2) < 10) {
-					month = `0${this.selectedMonth + 2}`;
-				} else {
-					month = this.selectedMonth + 2;
-				}
+				dayEl.className = 'vanilla-calendar-day vanilla-calendar-day_next';
+				dayEl.innerText = `${i}`;
+				dayEl.dataset.calendarDate = `${year}-${month}-${day}`;
 
-				day.className = 'vanilla-calendar-day vanilla-calendar-day_next';
-				day.innerText = `${i}`;
-				day.dataset.calendarDate = `${year}-${month}-${dataDay}`;
-				daysEl.append(day);
+				daysEl.append(dayEl);
 			}
 		};
 
@@ -166,7 +205,7 @@ export default class VanillaCalendar {
 	}
 
 	changeMonth(element) {
-		const lastMonth = this.name.months[this.lang].length - 1;
+		const lastMonth = this.name.months[this.settings.lang].length - 1;
 
 		if (element.closest('.vanilla-calendar-arrow_prev')) {
 			if (this.selectedMonth !== 0) {
@@ -188,24 +227,35 @@ export default class VanillaCalendar {
 		this.createDays();
 	}
 
-	hasClick() {
+	changeDay(element) {
+		if (!element.closest('.vanilla-calendar-day_prev') && !element.closest('.vanilla-calendar-day_next')) {
+			this.selectedDate = element.dataset.calendarDate;
+			this.createDays();
+		}
+	}
+
+	click() {
 		this.calendar.addEventListener('click', (e) => {
 			if (e.target.closest('.vanilla-calendar-arrow')) {
 				this.changeMonth(e.target);
+			} else if (this.settings.selecting && e.target.closest('.vanilla-calendar-day')) {
+				this.changeDay(e.target);
 			}
 		});
 	}
 
 	update() {
+		this.selectingDate();
 		this.createMonth();
 		this.createDays();
 	}
 
 	init() {
 		this.createDOM();
+		this.selectingDate();
 		this.createMonth();
 		this.createWeek();
 		this.createDays();
-		this.hasClick();
+		this.click();
 	}
 }

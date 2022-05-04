@@ -1,4 +1,6 @@
 .vanilla-calendar {
+	$calendar: &;
+
 	display: flex;
 	flex-direction: column;
 	background-color: white;
@@ -61,6 +63,10 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+
+			&_weekend {
+				color: coral;
+			}
 		}
 	}
 
@@ -68,9 +74,22 @@
 		display: grid;
 		grid-template-columns: repeat(7, 1fr);
 		column-gap: 5px;
+
+		&_selecting {
+			#{$calendar}-day {
+				cursor: pointer;
+
+				&_prev,
+				&_next {
+					cursor: default;
+				}
+			}
+		}
 	}
 
 	&-day {
+		$day: &;
+
 		padding-top: 1px;
 		font-size: 14px;
 		line-height: 20px;
@@ -82,18 +101,40 @@
 		justify-content: center;
 		border-radius: 50%;
 		background-color: white;
-		cursor: pointer;
+		cursor: default;
 
 		&:hover {
 			background-color: whitesmoke;
 		}
 
 		&_today {
+			color: lightseagreen;
+			font-weight: 600;
+
+			&:hover {
+				color: lightseagreen;
+			}
+		}
+
+		&_selected {
 			background-color: lightseagreen;
 			color: white;
 
 			&:hover {
 				background-color: lightseagreen;
+				color: white;
+			}
+		}
+
+		&_weekend {
+			color: coral;
+
+			&#{$day}_today {
+				color: lightseagreen;
+			}
+
+			&#{$day}_selected {
+				background-color: coral;
 				color: white;
 			}
 		}
