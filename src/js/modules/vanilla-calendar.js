@@ -10,7 +10,6 @@ export default class VanillaCalendar {
 			weekend: option.settings?.weekend ?? true,
 			today: option.settings?.today ?? true,
 			range: {
-				month: option.settings?.range?.month ?? true,
 				min: option.settings?.range?.min ?? null,
 				max: option.settings?.range?.max ?? null,
 				values: option.settings?.range?.values ?? null,
@@ -23,6 +22,7 @@ export default class VanillaCalendar {
 			},
 			visibility: {
 				year: option.settings?.visibility?.year ?? true,
+				months: option.settings?.visibility?.months ?? true,
 				arrows: {
 					prev: option.settings?.visibility?.arrows?.prev ?? true,
 					next: option.settings?.visibility?.arrows?.next ?? true,
@@ -57,13 +57,13 @@ export default class VanillaCalendar {
 			<div class="vanilla-calendar-header">
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_prev"
-					style="${this.settings.visibility.arrows.prev ? 'visibility: hidden' : ''}">
+					style="${this.settings.visibility.arrows.prev ? '' : 'visibility: hidden'}">
 					${this.name.arrow.prev[this.settings.lang]}
 				</button>
 				<b class="vanilla-calendar-month"></b>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next"
-					style="${this.settings.visibility.arrows.next ? 'visibility: hidden' : ''}">
+					style="${this.settings.visibility.arrows.next ? '' : 'visibility: hidden'}">
 					${this.name.arrow.next[this.settings.lang]}
 				</button>
 			</div>
@@ -100,15 +100,15 @@ export default class VanillaCalendar {
 		const monthMin = this.settings.range.min ? new Date(this.settings.range.min).getMonth() : null;
 		const monthMax = this.settings.range.max ? new Date(this.settings.range.max).getMonth() : null;
 
-		if (this.settings.range.month && monthMin && monthMin === this.selectedMonth) {
+		if (this.settings.visibility.months !== true && monthMin !== null && monthMin === this.selectedMonth) {
 			arrowPrev.style.visibility = 'hidden';
-		} else {
+		} else if (this.settings.visibility.arrows.prev) {
 			arrowPrev.style.visibility = null;
 		}
 
-		if (this.settings.range.month && monthMax && monthMax === this.selectedMonth) {
+		if (!this.settings.visibility.months && monthMax !== null && monthMax === this.selectedMonth) {
 			arrowNext.style.visibility = 'hidden';
-		} else {
+		} else if (this.settings.visibility.arrows.next) {
 			arrowNext.style.visibility = null;
 		}
 
@@ -321,8 +321,10 @@ export default class VanillaCalendar {
 	}
 
 	update() {
+		this.createDOM();
 		this.selectingDate();
 		this.createMonth();
+		this.createWeek();
 		this.createDays();
 	}
 
