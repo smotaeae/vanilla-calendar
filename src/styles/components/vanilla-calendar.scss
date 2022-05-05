@@ -105,7 +105,7 @@
 		cursor: default;
 
 		&:hover {
-			background-color: whitesmoke;
+			background-color: aliceblue;
 		}
 
 		&_today {
@@ -133,14 +133,32 @@
 		&_holiday {
 			color: coral;
 
+			&:hover {
+				background-color: seashell;
+			}
+
 			&#{$day}_today {
 				color: coral;
 				background-color: seashell;
+
+				&#{$day}_disabled {
+					color: lightgrey;
+					background-color: whitesmoke;
+				}
 			}
 
 			&#{$day}_selected {
 				background-color: coral;
 				color: white;
+
+				&:hover {
+					background-color: coral;
+				}
+
+				&#{$day}_disabled {
+					color: whitesmoke;
+					background-color: lightgrey;
+				}
 			}
 		}
 

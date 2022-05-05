@@ -1,7 +1,7 @@
 export default class VanillaCalendar {
 	constructor(option) {
 		this.calendar = option.calendar;
-		this.day = new Date();
+		this.today = option.today ?? new Date();
 
 		this.settings = {
 			lang: option.settings?.lang ?? 'ru',
@@ -9,6 +9,7 @@ export default class VanillaCalendar {
 			weekend: option.settings?.weekend ?? true,
 			today: option.settings?.today ?? true,
 			range: {
+				month: option.settings?.range?.month ?? true,
 				min: option.settings?.range?.min ?? null,
 				max: option.settings?.range?.max ?? null,
 				values: option.settings?.range?.values ?? null,
@@ -18,6 +19,13 @@ export default class VanillaCalendar {
 				month: option.settings?.selected?.month ? option.settings.selected.month - 1 : null,
 				year: option.settings?.selected?.year ?? null,
 				holidays: option.settings?.selected?.holidays ?? null,
+			},
+			visibility: {
+				year: option.settings?.visibility?.year ?? true,
+				arrows: {
+					prev: option.settings?.visibility?.arrows?.prev ?? true,
+					next: option.settings?.visibility?.arrows?.next ?? true,
+				},
 			},
 		};
 
@@ -47,13 +55,15 @@ export default class VanillaCalendar {
 		this.calendar.innerHTML = `
 			<div class="vanilla-calendar-header">
 				<button type="button"
-					class="vanilla-calendar-arrow vanilla-calendar-arrow_prev">
+					class="vanilla-calendar-arrow vanilla-calendar-arrow_prev"
+					style="${this.settings.visibility.arrows.prev ? 'visibility: hidden' : ''}">
 					${this.name.arrow.prev[this.settings.lang]}
 				</button>
 				<b class="vanilla-calendar-month"></b>
 				<button type="button"
-					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
-					${this.name.arrow.prev[this.settings.lang]}
+					class="vanilla-calendar-arrow vanilla-calendar-arrow_next"
+					style="${this.settings.visibility.arrows.next ? 'visibility: hidden' : ''}">
+					${this.name.arrow.next[this.settings.lang]}
 				</button>
 			</div>
 			<div class="vanilla-calendar-content">
@@ -65,8 +75,8 @@ export default class VanillaCalendar {
 
 	selectingDate() {
 		this.selectedDate = null;
-		this.selectedMonth = this.day.getMonth();
-		this.selectedYear = this.day.getFullYear();
+		this.selectedMonth = this.today.getMonth();
+		this.selectedYear = this.today.getFullYear();
 
 		if (this.settings.selected.date !== null) {
 			this.selectedDate = this.settings.selected.date;
@@ -83,8 +93,26 @@ export default class VanillaCalendar {
 
 	createMonth() {
 		const monthEl = this.calendar.querySelector('.vanilla-calendar-month');
+		const arrowPrev = this.calendar.querySelector('.vanilla-calendar-arrow_prev');
+		const arrowNext = this.calendar.querySelector('.vanilla-calendar-arrow_next');
 
-		monthEl.innerText = `${this.name.months[this.settings.lang][this.selectedMonth]} ${this.selectedYear}`;
+		const monthMin = this.settings.range.min ? new Date(this.settings.range.min).getMonth() : null;
+		const monthMax = this.settings.range.max ? new Date(this.settings.range.max).getMonth() : null;
+
+		if (this.settings.range.month && monthMin && monthMin === this.selectedMonth) {
+			arrowPrev.style.visibility = 'hidden';
+		} else {
+			arrowPrev.style.visibility = null;
+		}
+
+		if (this.settings.range.month && monthMax && monthMax === this.selectedMonth) {
+			arrowNext.style.visibility = 'hidden';
+		} else {
+			arrowNext.style.visibility = null;
+		}
+
+		monthEl.innerText = this.name.months[this.settings.lang][this.selectedMonth];
+		if (this.settings.visibility.year) monthEl.innerText += ` ${this.selectedYear}`;
 	}
 
 	createWeek() {
@@ -170,9 +198,9 @@ export default class VanillaCalendar {
 				}
 
 				// if today
-				const thisToday = i === this.day.getDate();
-				const thisMonth = this.selectedMonth === this.day.getMonth();
-				const thisYear = this.selectedYear === this.day.getFullYear();
+				const thisToday = i === this.today.getDate();
+				const thisMonth = this.selectedMonth === this.today.getMonth();
+				const thisYear = this.selectedYear === this.today.getFullYear();
 
 				if (this.settings.today && thisToday && thisMonth && thisYear) {
 					dayEl.classList.add('vanilla-calendar-day_today');
