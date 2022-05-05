@@ -5,6 +5,7 @@ export default class VanillaCalendar {
 
 		this.settings = {
 			lang: option.settings?.lang ?? 'ru',
+			iso8601: option.settings?.iso8601 ?? true,
 			selecting: option.settings?.selecting ?? true,
 			weekend: option.settings?.weekend ?? true,
 			today: option.settings?.today ?? true,
@@ -35,8 +36,8 @@ export default class VanillaCalendar {
 				ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
 			},
 			week: {
-				eng: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-				ru: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+				eng: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+				ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 			},
 			arrow: {
 				prev: {
@@ -118,14 +119,23 @@ export default class VanillaCalendar {
 	createWeek() {
 		const weekEl = this.calendar.querySelector('.vanilla-calendar-week');
 
-		for (let i = 0; i < this.name.week[this.settings.lang].length; i++) {
-			const weekDayName = this.name.week[this.settings.lang][i];
+		const week = this.name.week[this.settings.lang];
+		week.push(week.shift());
+
+		for (let i = 0; i < week.length; i++) {
+			const weekDayName = week[i];
 			const weekDay = document.createElement('span');
 
 			weekDay.className = 'vanilla-calendar-week__day';
 
-			if (this.settings.weekend && (i === 5 || i === 6)) {
-				weekDay.classList.add('vanilla-calendar-week__day_weekend');
+			if (this.settings.weekend && this.settings.iso8601) {
+				if (i === 5 || i === 6) {
+					weekDay.classList.add('vanilla-calendar-week__day_weekend');
+				}
+			} else if (this.settings.weekend && !this.settings.iso8601) {
+				if (i === 0 || i === 6) {
+					weekDay.classList.add('vanilla-calendar-week__day_weekend');
+				}
 			}
 
 			weekDay.innerText = `${weekDayName}`;
@@ -135,7 +145,12 @@ export default class VanillaCalendar {
 
 	createDays() {
 		const firstDay = new Date(this.selectedYear, this.selectedMonth, 1);
-		const firstDayWeek = Number((firstDay.getDay() !== 0 ? firstDay.getDay() : 7) - 1);
+		let firstDayWeek = Number(firstDay.getDay());
+
+		if (this.settings.iso8601) {
+			firstDayWeek = Number((firstDay.getDay() !== 0 ? firstDay.getDay() : 7) - 1);
+		}
+
 		const daysSelectedMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
 
 		const daysEl = this.calendar.querySelector('.vanilla-calendar-days');
@@ -184,7 +199,7 @@ export default class VanillaCalendar {
 				dayEl.dataset.calendarDate = date;
 
 				// if weekend
-				if (this.settings.weekend && (dayID === 6 || dayID === 0)) {
+				if (this.settings.weekend && (dayID === 0 || dayID === 6)) {
 					dayEl.classList.add('vanilla-calendar-day_weekend');
 				}
 

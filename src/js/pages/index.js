@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// today: new Date('2022-05-07'),
 		settings: {
 			// lang: 'eng',
+			// iso8601: false,
 			// selecting: false,
 			// weekend: false,
 			// today: false,
