@@ -118,8 +118,11 @@ class VanillaCalendar {
       arrowNext.style.visibility = null;
     }
 
-    monthEl.innerText = this.name.months[this.settings.lang][this.selectedMonth];
-    if (this.settings.visibility.year) monthEl.innerText += ` ${this.selectedYear}`;
+    if (this.settings.visibility.year) {
+      monthEl.innerText = `${this.name.months[this.settings.lang][this.selectedMonth]} ${this.selectedYear}`;
+    } else {
+      monthEl.innerText = this.name.months[this.settings.lang][this.selectedMonth];
+    }
   }
 
   createWeek() {
