@@ -1,6 +1,6 @@
 {
   "name": "@uvarov.frontend/vanilla-calendar",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Vanilla js calendar without using additional packages.",
   "homepage": "https://vanilla-calendar.frontend.uvarov.tech/",
   "keywords": [

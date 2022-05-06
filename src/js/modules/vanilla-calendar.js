@@ -181,7 +181,7 @@ export default class VanillaCalendar {
 
 				dayEl.className = 'vanilla-calendar-day vanilla-calendar-day_prev';
 				dayEl.innerText = `${day}`;
-				dayEl.dataset.calendarDate = `${year}-${month}-${day}`;
+				dayEl.dataset.calendarDay = `${year}-${month}-${day}`;
 				daysEl.append(dayEl);
 			}
 		};
@@ -199,7 +199,7 @@ export default class VanillaCalendar {
 
 				dayEl.className = 'vanilla-calendar-day';
 				dayEl.innerText = `${i}`;
-				dayEl.dataset.calendarDate = date;
+				dayEl.dataset.calendarDay = date;
 
 				// if weekend
 				if (this.settings.weekend && (dayID === 0 || dayID === 6)) {
@@ -272,7 +272,7 @@ export default class VanillaCalendar {
 
 				dayEl.className = 'vanilla-calendar-day vanilla-calendar-day_next';
 				dayEl.innerText = `${i}`;
-				dayEl.dataset.calendarDate = `${year}-${month}-${day}`;
+				dayEl.dataset.calendarDay = `${year}-${month}-${day}`;
 
 				daysEl.append(dayEl);
 			}
@@ -308,7 +308,7 @@ export default class VanillaCalendar {
 
 	changeDay(element) {
 		if (!element.closest('.vanilla-calendar-day_prev') && !element.closest('.vanilla-calendar-day_next')) {
-			this.selectedDate = element.dataset.calendarDate;
+			this.selectedDate = element.dataset.calendarDay;
 			this.createDays();
 		}
 	}
