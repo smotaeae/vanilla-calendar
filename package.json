@@ -19,7 +19,7 @@
   "license": "MIT",
   "main": "./build/js/vanilla-calendar.min.js",
   "scripts": {
-    "clear": "gulp clear",
+    "clean": "gulp clean",
     "dest": "gulp dest",
     "build": "gulp build",
     "start": "gulp start",

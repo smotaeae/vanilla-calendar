@@ -68,7 +68,11 @@ function deploy() {
 // Tasks
 
 function clean() {
-	return del(['dest', 'build']);
+	return del(['dest']);
+}
+
+function cleanBuild() {
+	return del(['build']);
 }
 
 function files() {
@@ -139,12 +143,11 @@ function watch() {
 	gulp.watch(paths.styles.src, gulp.series(gulp.parallel(styles, stylesMinify), reload));
 }
 
-const clear = gulp.series(clean);
 const dest = gulp.series(clean, gulp.parallel(files, fonts, img), gulp.parallel(js, jsMinify), gulp.parallel(styles, stylesMinify));
-const build = gulp.series(dest, npm, copy);
+const build = gulp.series(cleanBuild, dest, npm, copy);
 const start = gulp.series(dest, gulp.parallel(server, watch));
 
-exports.clear = clear;
+exports.clean = clean;
 exports.dest = dest;
 exports.build = build;
 exports.start = start;
