@@ -21,6 +21,7 @@
   "scripts": {
     "clear": "gulp clear",
     "dest": "gulp dest",
+    "build": "gulp build",
     "start": "gulp start",
     "ftp": "gulp ftp"
   },
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
+    "browser-sync": "^2.27.9",
     "del": "^6.0.0",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",

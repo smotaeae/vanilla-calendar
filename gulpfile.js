@@ -4,6 +4,7 @@ const uglify = require('gulp-uglify');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
+const browserSync = require('browser-sync').create();
 const del = require('del');
 const FtpDeploy = require('ftp-deploy');
 
@@ -12,6 +13,8 @@ const ftp = require('./.ftp');
 const paths = {
 	src: 'src/*.*',
 	dest: 'dest/',
+	build: 'build/',
+	npm: 'src/npm/**/*.*',
 	fonts: {
 		src: 'src/fonts/**/*.{woff,woff2}',
 		dest: 'dest/fonts/',
@@ -21,17 +24,51 @@ const paths = {
 		dest: 'dest/img/',
 	},
 	js: {
-		src: ['src/js/*.js', 'src/js/modules/*.js'],
+		src: ['src/js/**/*.js', '!src/js/other/**/*.js'],
 		dest: 'dest/js/',
 	},
 	styles: {
-		src: ['src/styles/*.scss', 'src/styles/modules/*.scss'],
+		src: ['src/styles/**/*.scss', '!src/styles/other/**/*.scss'],
 		dest: 'dest/css/',
 	},
 };
 
+function reload(done) {
+	browserSync.reload();
+	done();
+}
+
+function server(done) {
+	browserSync.init({
+		reloadDebounce: 1000,
+		notify: false,
+		server: {
+			baseDir: paths.dest,
+		},
+	});
+	done();
+}
+
+function deploy() {
+	return new FtpDeploy().deploy({
+		user: ftp.user,
+		password: ftp.password,
+		host: ftp.host,
+		port: ftp.port,
+		remoteRoot: ftp.root,
+		localRoot: paths.dest,
+		include: ['.*', '*', '**/*'],
+		exclude: ['.DS_Store'],
+		deleteRemote: true,
+		forcePasv: true,
+		sftp: false,
+	});
+}
+
+// Tasks
+
 function clean() {
-	return del(['dest']);
+	return del(['dest', 'build']);
 }
 
 function files() {
@@ -86,36 +123,33 @@ function stylesMinify() {
 		.pipe(gulp.dest(paths.styles.dest));
 }
 
-function watch() {
-	gulp.watch(paths.src, files);
-	gulp.watch(paths.js.src, gulp.parallel(js, jsMinify));
-	gulp.watch(paths.styles.src, gulp.parallel(styles, stylesMinify));
+function npm() {
+	return gulp.src(paths.npm)
+		.pipe(gulp.dest(paths.build));
 }
 
-function deploy() {
-	return new FtpDeploy().deploy({
-		user: ftp.user,
-		password: ftp.password,
-		host: ftp.host,
-		port: ftp.port,
-		remoteRoot: ftp.root,
-		localRoot: paths.dest,
-		include: ['.*', '*', '**/*'],
-		exclude: ['.DS_Store'],
-		deleteRemote: true,
-		forcePasv: true,
-		sftp: false,
-	});
+function copy() {
+	return gulp.src(['dest/js/modules/*.js', 'dest/css/modules/*.css'])
+		.pipe(gulp.dest(paths.build));
+}
+
+function watch() {
+	gulp.watch(paths.src, gulp.series(files, reload));
+	gulp.watch(paths.js.src, gulp.series(gulp.parallel(js, jsMinify), reload));
+	gulp.watch(paths.styles.src, gulp.series(gulp.parallel(styles, stylesMinify), reload));
 }
 
 const clear = gulp.series(clean);
 const dest = gulp.series(clean, gulp.parallel(files, fonts, img), gulp.parallel(js, jsMinify), gulp.parallel(styles, stylesMinify));
-const start = gulp.series(dest, watch);
+const build = gulp.series(dest, npm, copy);
+const start = gulp.series(dest, gulp.parallel(server, watch));
 
 exports.clear = clear;
-exports.watch = watch;
 exports.dest = dest;
+exports.build = build;
 exports.start = start;
+exports.watch = watch;
+exports.server = server;
 exports.ftp = deploy;
 
-exports.default = dest;
+exports.default = build;
