@@ -20,7 +20,7 @@
   "main": "./build/js/vanilla-calendar.min.js",
   "scripts": {
     "clear": "gulp clear",
-    "build": "gulp build",
+    "dest": "gulp dest",
     "start": "gulp start",
     "ftp": "gulp ftp"
   },

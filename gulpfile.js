@@ -11,27 +11,27 @@ const ftp = require('./.ftp');
 
 const paths = {
 	src: 'src/*.*',
-	dest: 'build/',
+	dest: 'dest/',
 	fonts: {
 		src: 'src/fonts/**/*.{woff,woff2}',
-		dest: 'build/fonts/',
+		dest: 'dest/fonts/',
 	},
 	img: {
 		src: 'src/img/**/*.{png,jpg,jpeg,svg}',
-		dest: 'build/img/',
+		dest: 'dest/img/',
 	},
 	js: {
 		src: ['src/js/*.js', 'src/js/modules/*.js'],
-		dest: 'build/js/',
+		dest: 'dest/js/',
 	},
 	styles: {
 		src: ['src/styles/*.scss', 'src/styles/modules/*.scss'],
-		dest: 'build/css/',
+		dest: 'dest/css/',
 	},
 };
 
 function clean() {
-	return del(['build']);
+	return del(['dest']);
 }
 
 function files() {
@@ -109,13 +109,13 @@ function deploy() {
 }
 
 const clear = gulp.series(clean);
-const build = gulp.series(clean, gulp.parallel(files, fonts, img), gulp.parallel(js, jsMinify), gulp.parallel(styles, stylesMinify));
-const start = gulp.series(build, watch);
+const dest = gulp.series(clean, gulp.parallel(files, fonts, img), gulp.parallel(js, jsMinify), gulp.parallel(styles, stylesMinify));
+const start = gulp.series(dest, watch);
 
 exports.clear = clear;
 exports.watch = watch;
-exports.build = build;
+exports.dest = dest;
 exports.start = start;
 exports.ftp = deploy;
 
-exports.default = build;
+exports.default = dest;

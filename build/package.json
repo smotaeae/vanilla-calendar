@@ -1,0 +1,24 @@
+{
+  "name": "@uvarov.frontend/vanilla-calendar",
+  "version": "1.0.5",
+  "description": "Vanilla js calendar without using additional packages.",
+  "homepage": "https://vanilla-calendar.frontend.uvarov.tech/",
+  "keywords": [
+    "calendar",
+    "vanilla-js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uvarov-frontend/vanilla-calendar.git"
+  },
+  "author": {
+    "name": "Yuri Uvarov",
+    "email": "uvarov.frontend@gmail.com",
+    "url": "https://frontend.uvarov.tech"
+  },
+  "license": "MIT",
+  "main": "vanilla-calendar.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

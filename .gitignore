@@ -4,7 +4,6 @@
 
 # Node
 node_modules
-npm_build
 
 # FTP
 .ftp
