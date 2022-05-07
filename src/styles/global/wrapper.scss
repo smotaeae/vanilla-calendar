@@ -1,6 +1,3 @@
-$widthMainContent: 825;
-$widthSidebarContent: 340;
-
 .wrapper {
 	position: relative;
 	display: grid;
@@ -16,49 +13,14 @@ $widthSidebarContent: 340;
 	min-height: 250px;
 	display: grid;
 	gap: 15px;
-	grid-template-areas: 'main-content main-sidebar';
-	grid-template-columns: #{$widthMainContent}px #{$widthSidebarContent}px;
-
-	@include container;
-
-	@include mq('desktop') {
-		grid-template-columns: 100%;
-		grid-template-areas: 'main-content' 'main-sidebar';
-		gap: 0;
-	}
-
-	&_no-sidebar {
-		grid-template-areas: 'main-content';
-		grid-template-columns: 100%;
-		padding-left: 0;
-		padding-right: 0;
-
-		& .main-content {
-			max-width: 100%;
-		}
-	}
+	grid-template-areas: 'main-content';
+	grid-template-columns: 100%;
 }
 
 .main-content {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	max-width: #{$widthMainContent}px;
-
-	@include mq('desktop') {
-		max-width: 100%;
-		min-width: #{$mw_phone}px;
-	}
-}
-
-.main-sidebar {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	max-width: #{$widthSidebarContent}px;
-
-	@include mq('desktop') {
-		max-width: 100%;
-		min-width: #{$mw_phone}px;
-	}
+	max-width: 100%;
+	min-width: 320px;
 }
