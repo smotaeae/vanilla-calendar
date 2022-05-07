@@ -21,11 +21,11 @@ const paths = {
 		dest: 'build/img/',
 	},
 	js: {
-		src: 'src/js/**/*.js',
+		src: ['src/js/*.js', 'src/js/modules/*.js'],
 		dest: 'build/js/',
 	},
 	styles: {
-		src: 'src/styles/**/*.scss',
+		src: ['src/styles/*.scss', 'src/styles/modules/*.scss'],
 		dest: 'build/css/',
 	},
 };
