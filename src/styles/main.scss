@@ -1,29 +1,43 @@
 // Global
-@import './other/normalize.scss';
+// @import 'normalize.css';
 @import './other/fonts.scss';
 @import './other/basic.scss';
 @import './other/wrapper.scss';
 
 .main-content {
 	display: block;
-	padding: 50px 0;
+	padding: 50px 15px;
 	background-color: #efefef;
 }
 
 .section {
 	position: relative;
-	margin: 20px 0 30px;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
+	margin: 20px auto 30px;
+	max-width: 800px;
 }
 
 .text-center {
 	text-align: center;
 }
 
-.grid {
-	display: grid;
-	gap: 10px;
-	justify-content: center;
+.vanilla-calendar {
+	width: 300px;
+	margin: 0 auto;
+}
+
+pre.code {
+	display: block;
+	margin-top: 10px;
+	background-color: transparent;
+	font-size: 0;
+
+	// max-width: 400px;
+
+	code {
+		// white-space: pre-line;
+		background-color: white;
+		border-radius: 4px;
+		font-size: 14px;
+		padding: 0 25px;
+	}
 }

@@ -7,6 +7,7 @@
 		<meta name="format-detection" content="telephone=no">
 		<title>VANILLA-CALENDAR DEMO</title>
 		<link rel="shortcut icon" href="./favicon.svg">
+		<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
 		<link href="./css/modules/vanilla-calendar.min.css" rel="stylesheet">
 		<link href="./css/main.min.css" rel="stylesheet">
 	</head>
@@ -15,17 +16,62 @@
 		<div class="wrapper">
 			<div class="main-wrapper main-wrapper_no-sidebar">
 				<main class="main-content">
+					<h1 class="text-center">VANILLA-CALENDAR DEMO</h1>
+					<p class="text-center">Vanilla js calendar without using additional packages.</p>
 					<section class="section">
-						<h1 class="text-center">VANILLA-CALENDAR DEMO</h1>
-						<p class="text-center">Календарь на ванильном JS.</p>
-						<div class="grid">
-							<div class="vanilla-calendar"></div>
-						</div>
+						<h2 class="text-center">Default</h2>
+						<div class="vanilla-calendar" id="one"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+					<section class="section">
+						<h2 class="text-center">Language and ISO 8601</h2>
+						<p class="text-center">The default language is Russian and ISO 8601 format, you can change it.</p>
+						<div class="vanilla-calendar" id="two"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  settings: {
+    lang: 'eng',
+    iso8601: false,
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+					<section class="section">
+						<h2 class="text-center">Custom language</h2>
+						<p class="text-center">By default, only two languages ​​​​are available, these are Russian and English. You can add any language.</p>
+						<div class="vanilla-calendar" id="three"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+});
+
+three.name.months.kz = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
+three.name.week.kz = ['Си', 'Же', 'Ду', 'Сй', 'Ср', 'Бе', 'Жұ'];
+three.settings.lang = 'kz';
+
+calendar.init();
+							</code>
+						</pre>
 					</section>
 				</main>
 			</div>
 		</div>
 		<script> var exports = {}; </script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
 		<script src="./js/modules/vanilla-calendar.min.js"></script>
 		<script src="./js/main.min.js"></script>
 	</body>
