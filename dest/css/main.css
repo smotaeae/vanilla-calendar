@@ -160,30 +160,117 @@ iframe {
 
 .main-content {
   display: block;
-  padding: 50px 15px;
-  background-color: #efefef;
+  background-color: #f1f1f1;
+}
+
+.github {
+  position: absolute;
+  z-index: 2;
+  right: 25px;
+  bottom: 20px;
+  display: block;
+  font-size: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #756855;
+  -webkit-mask: url("../img/github.svg") no-repeat 50% 50%;
+  mask: url("../img/github.svg") no-repeat 50% 50%;
+}
+.github:hover {
+  background-color: black;
+  -webkit-transition: background-color 0.1s;
+  -o-transition: background-color 0.1s;
+  transition: background-color 0.1s;
 }
 
 .section {
   position: relative;
-  margin: 20px auto 30px;
-  max-width: 800px;
+  margin: 60px auto 30px;
+  max-width: 900px;
+  padding: 0 15px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
 }
-
-.text-center {
+.section:last-child {
+  border-bottom: 0;
+}
+.section_main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 0;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 50px 15px 100px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #20b2aa;
+  background: -webkit-gradient(linear, left top, right bottom, from(#20b2aa), to(#ffcc97));
+  background: -o-linear-gradient(top left, #20b2aa, #ffcc97);
+  background: linear-gradient(to bottom right, #20b2aa, #ffcc97);
+  border-bottom: 0;
+}
+.section_main .section__title {
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 3px #54635e;
+}
+.section_main .section__subtitle {
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto 40px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 0 3px #54635e;
+}
+.section__title {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
   text-align: center;
 }
-
-.vanilla-calendar {
-  width: 300px;
+.section__subtitle {
+  display: block;
+  margin-bottom: 35px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+.section .vanilla-calendar {
   margin: 0 auto;
 }
 
 pre.code {
   display: block;
-  margin-top: 10px;
+  margin: 20px auto 0;
   background-color: transparent;
   font-size: 0;
+  width: 800px;
+  max-width: 100%;
 }
 pre.code code {
   background-color: white;

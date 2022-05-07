@@ -5,7 +5,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1,width=device-width">
 		<meta name="format-detection" content="telephone=no">
-		<title>VANILLA-CALENDAR DEMO</title>
+		<title>Vanilla JS Calendar</title>
+		<meta name="description" content="Vanilla js calendar without using additional packages">
+		<meta name="keywords" content="vanilla, js, calendar, lite">
 		<link rel="shortcut icon" href="./favicon.svg">
 		<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
 		<link href="./css/modules/vanilla-calendar.min.css" rel="stylesheet">
@@ -16,10 +18,10 @@
 		<div class="wrapper">
 			<div class="main-wrapper main-wrapper_no-sidebar">
 				<main class="main-content">
-					<h1 class="text-center">VANILLA-CALENDAR DEMO</h1>
-					<p class="text-center">Vanilla js calendar without using additional packages.</p>
-					<section class="section">
-						<h2 class="text-center">Default</h2>
+					<section class="section section_main">
+						<h1 class="section__title">VANILLA-CALENDAR</h1>
+						<p class="section__subtitle">Vanilla js calendar without using additional packages.</p>
+						<a href="https://github.com/uvarov-frontend/vanilla-calendar" class="github">GitHub</a>
 						<div class="vanilla-calendar" id="one"></div>
 						<pre class="code">
 							<code class="language-js">
@@ -31,9 +33,10 @@ calendar.init();
 							</code>
 						</pre>
 					</section>
+
 					<section class="section">
-						<h2 class="text-center">Language and ISO 8601</h2>
-						<p class="text-center">The default language is Russian and ISO 8601 format, you can change it.</p>
+						<h2 class="section__title">Language and ISO 8601</h2>
+						<p class="section__subtitle">The default language is Russian and ISO 8601 format, you can change it.</p>
 						<div class="vanilla-calendar" id="two"></div>
 						<pre class="code">
 							<code class="language-js">
@@ -49,9 +52,10 @@ calendar.init();
 							</code>
 						</pre>
 					</section>
+
 					<section class="section">
-						<h2 class="text-center">Custom language</h2>
-						<p class="text-center">By default, only two languages ​​​​are available, these are Russian and English. You can add any language.</p>
+						<h2 class="section__title">Custom language</h2>
+						<p class="section__subtitle">By default, only two languages ​​​​are available, these are Russian and English. You can add any language.</p>
 						<div class="vanilla-calendar" id="three"></div>
 						<pre class="code">
 							<code class="language-js">
@@ -59,9 +63,168 @@ const calendar = new VanillaCalendar({
   calendar: document.querySelector('.vanilla-calendar'),
 });
 
-three.name.months.kz = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
-three.name.week.kz = ['Си', 'Же', 'Ду', 'Сй', 'Ср', 'Бе', 'Жұ'];
-three.settings.lang = 'kz';
+calendar.name.months.kz = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
+calendar.name.week.kz = ['Си', 'Же', 'Ду', 'Сй', 'Ср', 'Бе', 'Жұ'];
+calendar.settings.lang = 'kz';
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">Highlight of the selected day</h2>
+						<p class="section__subtitle">By default, on a click on a day, an event handler is triggered. This behavior can be disabled.</p>
+						<div class="vanilla-calendar" id="four"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  settings: {
+    selecting: false,
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">Highlight weekend and today</h2>
+						<p class="section__subtitle">You can disable highlighting the weekend and today.</p>
+						<div class="vanilla-calendar" id="five"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  settings: {
+    weekend: false,
+    today: false,
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">Displayed day, month, year</h2>
+						<p class="section__subtitle">You can explicitly specify today, the selected date, month and year.</p>
+						<div class="vanilla-calendar" id="six"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  today: new Date('2022-01-07'),
+  settings: {
+    selected: {
+      date: '2022-01-09',
+      month: 1,
+      year: 2022,
+    },
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">Date range</h2>
+						<p class="section__subtitle">You can set the range of displayed dates, as well as specify which dates should be forcibly active.</p>
+						<div class="vanilla-calendar" id="seven"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  today: new Date('2022-01-08'),
+  settings: {
+    range: {
+      min: '2022-01-07',
+      max: '2022-02-12',
+      values: ['2022-01-02', '2022-01-04'],
+    }
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">More weekends or holidays</h2>
+						<p class="section__subtitle">Easily specify your own weekend or holidays.</p>
+						<div class="vanilla-calendar" id="eight"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  today: new Date('2022-01-08'),
+  settings: {
+    selected: {
+      month: 1,
+      year: 2022,
+      holidays: ['2022-01-03', '2022-01-04', '2022-01-05', '2022-01-20'],
+    },
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">Do not show non-active months</h2>
+						<p class="section__subtitle">Sometimes there is no need to display months that are not in the specified range.</p>
+						<div class="vanilla-calendar" id="nine"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  today: new Date('2022-02-08'),
+  settings: {
+    selected: {
+      month: 2,
+      year: 2022,
+    },
+    range: {
+      min: '2022-01-07',
+      max: '2022-02-12',
+    },
+    visibility: {
+      months: false,
+    },
+  },
+});
+
+calendar.init();
+							</code>
+						</pre>
+					</section>
+
+					<section class="section">
+						<h2 class="section__title">Disable the display of arrows and year</h2>
+						<p class="section__subtitle">Disable what you don't need.</p>
+						<div class="vanilla-calendar" id="ten"></div>
+						<pre class="code">
+							<code class="language-js">
+const calendar = new VanillaCalendar({
+  calendar: document.querySelector('.vanilla-calendar'),
+  settings: {
+    visibility: {
+      year: false,
+      arrows: {
+        prev: false,
+        next: false,
+      },
+    },
+  },
+});
 
 calendar.init();
 							</code>

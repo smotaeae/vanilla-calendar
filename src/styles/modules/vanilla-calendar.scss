@@ -1,6 +1,7 @@
 .vanilla-calendar {
 	$calendar: &;
 
+	width: 280px;
 	display: flex;
 	flex-direction: column;
 	background-color: white;
@@ -77,6 +78,7 @@
 		display: grid;
 		grid-template-columns: repeat(7, 1fr);
 		column-gap: 5px;
+		justify-items: center;
 
 		&__day {
 			font-size: 14px;
@@ -99,6 +101,7 @@
 		display: grid;
 		grid-template-columns: repeat(7, 1fr);
 		column-gap: 5px;
+		justify-items: center;
 
 		&_selecting {
 			#{$calendar}-day {
