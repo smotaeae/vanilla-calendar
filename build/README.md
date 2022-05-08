@@ -1,6 +1,6 @@
 # Vanilla JS Calendar
 
-Vanilla js calendar without using additional packages.
+Vanilla js calendar without using additional packages. [DEMO](https://vanilla-calendar.frontend.uvarov.tech/)
 
 ## Initialize
 
@@ -8,7 +8,7 @@ Get vanilla-calendar in one of the following ways:
 
 ### NPM
 
-```
+```sh
 npm install @uvarov.frontend/vanilla-calendar
 ```
 
