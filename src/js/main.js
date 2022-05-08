@@ -2,29 +2,38 @@
 document.addEventListener('DOMContentLoaded', () => {
 	// Examples
 	const one = new VanillaCalendar({
-		calendar: document.querySelector('#one'),
+		HTMLElement: document.querySelector('#one'),
 	});
 	one.init();
 
 	const two = new VanillaCalendar({
-		calendar: document.querySelector('#two'),
+		HTMLElement: document.querySelector('#two'),
 		settings: {
-			lang: 'eng',
 			iso8601: false,
 		},
 	});
 	two.init();
 
+	const threeRus = new VanillaCalendar({
+		HTMLElement: document.querySelector('#threeRus'),
+		settings: {
+			lang: 'ru',
+		},
+	});
+	threeRus.init();
+
 	const three = new VanillaCalendar({
-		calendar: document.querySelector('#three'),
+		HTMLElement: document.querySelector('#three'),
 	});
 	three.name.months.kz = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
 	three.name.week.kz = ['Си', 'Же', 'Ду', 'Сй', 'Ср', 'Бе', 'Жұ'];
+	three.name.arrow.prev.kz = 'Артқа';
+	three.name.arrow.next.kz = 'Алға';
 	three.settings.lang = 'kz';
 	three.init();
 
 	const four = new VanillaCalendar({
-		calendar: document.querySelector('#four'),
+		HTMLElement: document.querySelector('#four'),
 		settings: {
 			selecting: false,
 		},
@@ -32,17 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	four.init();
 
 	const five = new VanillaCalendar({
-		calendar: document.querySelector('#five'),
+		HTMLElement: document.querySelector('#five'),
 		settings: {
-			weekend: false,
-			today: false,
+			visibility: {
+				weekend: false,
+				today: false,
+			},
 		},
 	});
 	five.init();
 
 	const six = new VanillaCalendar({
-		calendar: document.querySelector('#six'),
-		today: new Date('2022-01-07'),
+		HTMLElement: document.querySelector('#six'),
+		date: new Date('2022-01-07'),
 		settings: {
 			selected: {
 				date: '2022-01-09',
@@ -54,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	six.init();
 
 	const seven = new VanillaCalendar({
-		calendar: document.querySelector('#seven'),
-		today: new Date('2022-01-08'),
+		HTMLElement: document.querySelector('#seven'),
+		date: new Date('2022-01-08'),
 		settings: {
 			selected: {
 				month: 1,
@@ -71,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	seven.init();
 
 	const eight = new VanillaCalendar({
-		calendar: document.querySelector('#eight'),
-		today: new Date('2022-01-08'),
+		HTMLElement: document.querySelector('#eight'),
+		date: new Date('2022-01-08'),
 		settings: {
 			selected: {
 				month: 1,
@@ -84,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	eight.init();
 
 	const nine = new VanillaCalendar({
-		calendar: document.querySelector('#nine'),
-		today: new Date('2022-02-08'),
+		HTMLElement: document.querySelector('#nine'),
+		date: new Date('2022-02-08'),
 		settings: {
 			selected: {
 				month: 2,
@@ -103,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	nine.init();
 
 	const ten = new VanillaCalendar({
-		calendar: document.querySelector('#ten'),
+		HTMLElement: document.querySelector('#ten'),
 		settings: {
 			visibility: {
 				year: false,

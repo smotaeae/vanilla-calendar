@@ -1,5 +1,5 @@
 // Global
-// @import 'normalize.css';
+@import './other/normalize.scss';
 @import './other/fonts.scss';
 @import './other/basic.scss';
 @import './other/wrapper.scss';
@@ -99,6 +99,7 @@
 
 	.vanilla-calendar {
 		margin: 0 auto;
+		border: 1px solid #e0e0e0;
 	}
 }
 
@@ -111,8 +112,8 @@ pre.code {
 	max-width: 100%;
 
 	code {
-		// white-space: pre-line;
 		background-color: white;
+		border: 1px solid #e0e0e0;
 		border-radius: 4px;
 		font-size: 14px;
 		padding: 0 25px;

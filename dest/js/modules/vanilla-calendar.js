@@ -13,54 +13,54 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var VanillaCalendar = /*#__PURE__*/function () {
   function VanillaCalendar(option) {
-    var _option$today, _option$settings$lang, _option$settings, _option$settings$iso, _option$settings2, _option$settings$sele, _option$settings3, _option$settings$week, _option$settings4, _option$settings$toda, _option$settings5, _option$settings$rang, _option$settings6, _option$settings6$ran, _option$settings$rang2, _option$settings7, _option$settings7$ran, _option$settings$rang3, _option$settings8, _option$settings8$ran, _option$settings$sele2, _option$settings9, _option$settings9$sel, _option$settings10, _option$settings10$se, _option$settings$sele3, _option$settings11, _option$settings11$se, _option$settings$sele4, _option$settings12, _option$settings12$se, _option$settings$visi, _option$settings13, _option$settings13$vi, _option$settings$visi2, _option$settings14, _option$settings14$vi, _option$settings$visi3, _option$settings15, _option$settings15$vi, _option$settings15$vi2, _option$settings$visi4, _option$settings16, _option$settings16$vi, _option$settings16$vi2;
+    var _option$date, _option$settings$lang, _option$settings, _option$settings$iso, _option$settings2, _option$settings$sele, _option$settings3, _option$settings$rang, _option$settings4, _option$settings4$ran, _option$settings$rang2, _option$settings5, _option$settings5$ran, _option$settings$rang3, _option$settings6, _option$settings6$ran, _option$settings$sele2, _option$settings7, _option$settings7$sel, _option$settings8, _option$settings8$sel, _option$settings$sele3, _option$settings9, _option$settings9$sel, _option$settings$sele4, _option$settings10, _option$settings10$se, _option$settings$visi, _option$settings11, _option$settings11$vi, _option$settings$visi2, _option$settings12, _option$settings12$vi, _option$settings$visi3, _option$settings13, _option$settings13$vi, _option$settings$visi4, _option$settings14, _option$settings14$vi, _option$settings$visi5, _option$settings15, _option$settings15$vi, _option$settings15$vi2, _option$settings$visi6, _option$settings16, _option$settings16$vi, _option$settings16$vi2;
 
     _classCallCheck(this, VanillaCalendar);
 
-    this.calendar = option.calendar;
-    this.today = (_option$today = option.today) !== null && _option$today !== void 0 ? _option$today : new Date();
+    this.HTMLElement = option.HTMLElement;
+    this.date = (_option$date = option.date) !== null && _option$date !== void 0 ? _option$date : new Date();
     this.settings = {
-      lang: (_option$settings$lang = (_option$settings = option.settings) === null || _option$settings === void 0 ? void 0 : _option$settings.lang) !== null && _option$settings$lang !== void 0 ? _option$settings$lang : 'ru',
+      lang: (_option$settings$lang = (_option$settings = option.settings) === null || _option$settings === void 0 ? void 0 : _option$settings.lang) !== null && _option$settings$lang !== void 0 ? _option$settings$lang : 'en',
       iso8601: (_option$settings$iso = (_option$settings2 = option.settings) === null || _option$settings2 === void 0 ? void 0 : _option$settings2.iso8601) !== null && _option$settings$iso !== void 0 ? _option$settings$iso : true,
       selecting: (_option$settings$sele = (_option$settings3 = option.settings) === null || _option$settings3 === void 0 ? void 0 : _option$settings3.selecting) !== null && _option$settings$sele !== void 0 ? _option$settings$sele : true,
-      weekend: (_option$settings$week = (_option$settings4 = option.settings) === null || _option$settings4 === void 0 ? void 0 : _option$settings4.weekend) !== null && _option$settings$week !== void 0 ? _option$settings$week : true,
-      today: (_option$settings$toda = (_option$settings5 = option.settings) === null || _option$settings5 === void 0 ? void 0 : _option$settings5.today) !== null && _option$settings$toda !== void 0 ? _option$settings$toda : true,
       range: {
-        min: (_option$settings$rang = (_option$settings6 = option.settings) === null || _option$settings6 === void 0 ? void 0 : (_option$settings6$ran = _option$settings6.range) === null || _option$settings6$ran === void 0 ? void 0 : _option$settings6$ran.min) !== null && _option$settings$rang !== void 0 ? _option$settings$rang : null,
-        max: (_option$settings$rang2 = (_option$settings7 = option.settings) === null || _option$settings7 === void 0 ? void 0 : (_option$settings7$ran = _option$settings7.range) === null || _option$settings7$ran === void 0 ? void 0 : _option$settings7$ran.max) !== null && _option$settings$rang2 !== void 0 ? _option$settings$rang2 : null,
-        values: (_option$settings$rang3 = (_option$settings8 = option.settings) === null || _option$settings8 === void 0 ? void 0 : (_option$settings8$ran = _option$settings8.range) === null || _option$settings8$ran === void 0 ? void 0 : _option$settings8$ran.values) !== null && _option$settings$rang3 !== void 0 ? _option$settings$rang3 : null
+        min: (_option$settings$rang = (_option$settings4 = option.settings) === null || _option$settings4 === void 0 ? void 0 : (_option$settings4$ran = _option$settings4.range) === null || _option$settings4$ran === void 0 ? void 0 : _option$settings4$ran.min) !== null && _option$settings$rang !== void 0 ? _option$settings$rang : null,
+        max: (_option$settings$rang2 = (_option$settings5 = option.settings) === null || _option$settings5 === void 0 ? void 0 : (_option$settings5$ran = _option$settings5.range) === null || _option$settings5$ran === void 0 ? void 0 : _option$settings5$ran.max) !== null && _option$settings$rang2 !== void 0 ? _option$settings$rang2 : null,
+        values: (_option$settings$rang3 = (_option$settings6 = option.settings) === null || _option$settings6 === void 0 ? void 0 : (_option$settings6$ran = _option$settings6.range) === null || _option$settings6$ran === void 0 ? void 0 : _option$settings6$ran.values) !== null && _option$settings$rang3 !== void 0 ? _option$settings$rang3 : null
       },
       selected: {
-        date: (_option$settings$sele2 = (_option$settings9 = option.settings) === null || _option$settings9 === void 0 ? void 0 : (_option$settings9$sel = _option$settings9.selected) === null || _option$settings9$sel === void 0 ? void 0 : _option$settings9$sel.date) !== null && _option$settings$sele2 !== void 0 ? _option$settings$sele2 : null,
-        month: (_option$settings10 = option.settings) !== null && _option$settings10 !== void 0 && (_option$settings10$se = _option$settings10.selected) !== null && _option$settings10$se !== void 0 && _option$settings10$se.month ? option.settings.selected.month - 1 : null,
-        year: (_option$settings$sele3 = (_option$settings11 = option.settings) === null || _option$settings11 === void 0 ? void 0 : (_option$settings11$se = _option$settings11.selected) === null || _option$settings11$se === void 0 ? void 0 : _option$settings11$se.year) !== null && _option$settings$sele3 !== void 0 ? _option$settings$sele3 : null,
-        holidays: (_option$settings$sele4 = (_option$settings12 = option.settings) === null || _option$settings12 === void 0 ? void 0 : (_option$settings12$se = _option$settings12.selected) === null || _option$settings12$se === void 0 ? void 0 : _option$settings12$se.holidays) !== null && _option$settings$sele4 !== void 0 ? _option$settings$sele4 : null
+        date: (_option$settings$sele2 = (_option$settings7 = option.settings) === null || _option$settings7 === void 0 ? void 0 : (_option$settings7$sel = _option$settings7.selected) === null || _option$settings7$sel === void 0 ? void 0 : _option$settings7$sel.date) !== null && _option$settings$sele2 !== void 0 ? _option$settings$sele2 : null,
+        month: (_option$settings8 = option.settings) !== null && _option$settings8 !== void 0 && (_option$settings8$sel = _option$settings8.selected) !== null && _option$settings8$sel !== void 0 && _option$settings8$sel.month ? option.settings.selected.month - 1 : null,
+        year: (_option$settings$sele3 = (_option$settings9 = option.settings) === null || _option$settings9 === void 0 ? void 0 : (_option$settings9$sel = _option$settings9.selected) === null || _option$settings9$sel === void 0 ? void 0 : _option$settings9$sel.year) !== null && _option$settings$sele3 !== void 0 ? _option$settings$sele3 : null,
+        holidays: (_option$settings$sele4 = (_option$settings10 = option.settings) === null || _option$settings10 === void 0 ? void 0 : (_option$settings10$se = _option$settings10.selected) === null || _option$settings10$se === void 0 ? void 0 : _option$settings10$se.holidays) !== null && _option$settings$sele4 !== void 0 ? _option$settings$sele4 : null
       },
       visibility: {
-        year: (_option$settings$visi = (_option$settings13 = option.settings) === null || _option$settings13 === void 0 ? void 0 : (_option$settings13$vi = _option$settings13.visibility) === null || _option$settings13$vi === void 0 ? void 0 : _option$settings13$vi.year) !== null && _option$settings$visi !== void 0 ? _option$settings$visi : true,
-        months: (_option$settings$visi2 = (_option$settings14 = option.settings) === null || _option$settings14 === void 0 ? void 0 : (_option$settings14$vi = _option$settings14.visibility) === null || _option$settings14$vi === void 0 ? void 0 : _option$settings14$vi.months) !== null && _option$settings$visi2 !== void 0 ? _option$settings$visi2 : true,
+        weekend: (_option$settings$visi = (_option$settings11 = option.settings) === null || _option$settings11 === void 0 ? void 0 : (_option$settings11$vi = _option$settings11.visibility) === null || _option$settings11$vi === void 0 ? void 0 : _option$settings11$vi.weekend) !== null && _option$settings$visi !== void 0 ? _option$settings$visi : true,
+        today: (_option$settings$visi2 = (_option$settings12 = option.settings) === null || _option$settings12 === void 0 ? void 0 : (_option$settings12$vi = _option$settings12.visibility) === null || _option$settings12$vi === void 0 ? void 0 : _option$settings12$vi.today) !== null && _option$settings$visi2 !== void 0 ? _option$settings$visi2 : true,
+        months: (_option$settings$visi3 = (_option$settings13 = option.settings) === null || _option$settings13 === void 0 ? void 0 : (_option$settings13$vi = _option$settings13.visibility) === null || _option$settings13$vi === void 0 ? void 0 : _option$settings13$vi.months) !== null && _option$settings$visi3 !== void 0 ? _option$settings$visi3 : true,
+        year: (_option$settings$visi4 = (_option$settings14 = option.settings) === null || _option$settings14 === void 0 ? void 0 : (_option$settings14$vi = _option$settings14.visibility) === null || _option$settings14$vi === void 0 ? void 0 : _option$settings14$vi.year) !== null && _option$settings$visi4 !== void 0 ? _option$settings$visi4 : true,
         arrows: {
-          prev: (_option$settings$visi3 = (_option$settings15 = option.settings) === null || _option$settings15 === void 0 ? void 0 : (_option$settings15$vi = _option$settings15.visibility) === null || _option$settings15$vi === void 0 ? void 0 : (_option$settings15$vi2 = _option$settings15$vi.arrows) === null || _option$settings15$vi2 === void 0 ? void 0 : _option$settings15$vi2.prev) !== null && _option$settings$visi3 !== void 0 ? _option$settings$visi3 : true,
-          next: (_option$settings$visi4 = (_option$settings16 = option.settings) === null || _option$settings16 === void 0 ? void 0 : (_option$settings16$vi = _option$settings16.visibility) === null || _option$settings16$vi === void 0 ? void 0 : (_option$settings16$vi2 = _option$settings16$vi.arrows) === null || _option$settings16$vi2 === void 0 ? void 0 : _option$settings16$vi2.next) !== null && _option$settings$visi4 !== void 0 ? _option$settings$visi4 : true
+          prev: (_option$settings$visi5 = (_option$settings15 = option.settings) === null || _option$settings15 === void 0 ? void 0 : (_option$settings15$vi = _option$settings15.visibility) === null || _option$settings15$vi === void 0 ? void 0 : (_option$settings15$vi2 = _option$settings15$vi.arrows) === null || _option$settings15$vi2 === void 0 ? void 0 : _option$settings15$vi2.prev) !== null && _option$settings$visi5 !== void 0 ? _option$settings$visi5 : true,
+          next: (_option$settings$visi6 = (_option$settings16 = option.settings) === null || _option$settings16 === void 0 ? void 0 : (_option$settings16$vi = _option$settings16.visibility) === null || _option$settings16$vi === void 0 ? void 0 : (_option$settings16$vi2 = _option$settings16$vi.arrows) === null || _option$settings16$vi2 === void 0 ? void 0 : _option$settings16$vi2.next) !== null && _option$settings$visi6 !== void 0 ? _option$settings$visi6 : true
         }
       }
     };
     this.name = {
       months: {
-        eng: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
       },
       week: {
-        eng: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
       },
       arrow: {
         prev: {
-          eng: 'Prev',
+          en: 'Prev',
           ru: 'Назад'
         },
         next: {
-          eng: 'Next',
+          en: 'Next',
           ru: 'Вперед'
         }
       }
@@ -70,14 +70,16 @@ var VanillaCalendar = /*#__PURE__*/function () {
   _createClass(VanillaCalendar, [{
     key: "createDOM",
     value: function createDOM() {
-      this.calendar.innerHTML = "\n\t\t\t<div class=\"vanilla-calendar-header\">\n\t\t\t\t<button type=\"button\"\n\t\t\t\t\tclass=\"vanilla-calendar-arrow vanilla-calendar-arrow_prev\"\n\t\t\t\t\tstyle=\"".concat(this.settings.visibility.arrows.prev ? '' : 'visibility: hidden', "\">\n\t\t\t\t\t").concat(this.name.arrow.prev[this.settings.lang], "\n\t\t\t\t</button>\n\t\t\t\t<b class=\"vanilla-calendar-month\"></b>\n\t\t\t\t<button type=\"button\"\n\t\t\t\t\tclass=\"vanilla-calendar-arrow vanilla-calendar-arrow_next\"\n\t\t\t\t\tstyle=\"").concat(this.settings.visibility.arrows.next ? '' : 'visibility: hidden', "\">\n\t\t\t\t\t").concat(this.name.arrow.next[this.settings.lang], "\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"vanilla-calendar-content\">\n\t\t\t\t<div class=\"vanilla-calendar-week\"></div>\n\t\t\t\t<div class=\"vanilla-calendar-days\"></div>\n\t\t\t</div>\n\t\t");
+      var _this$name$arrow$prev, _this$name$arrow$next;
+
+      this.HTMLElement.innerHTML = "\n\t\t\t<div class=\"vanilla-calendar-header\">\n\t\t\t\t<button type=\"button\"\n\t\t\t\t\tclass=\"vanilla-calendar-arrow vanilla-calendar-arrow_prev\"\n\t\t\t\t\tstyle=\"".concat(this.settings.visibility.arrows.prev ? '' : 'visibility: hidden', "\">\n\t\t\t\t\t").concat((_this$name$arrow$prev = this.name.arrow.prev[this.settings.lang]) !== null && _this$name$arrow$prev !== void 0 ? _this$name$arrow$prev : this.name.arrow.prev.en, "\n\t\t\t\t</button>\n\t\t\t\t<b class=\"vanilla-calendar-month\"></b>\n\t\t\t\t<button type=\"button\"\n\t\t\t\t\tclass=\"vanilla-calendar-arrow vanilla-calendar-arrow_next\"\n\t\t\t\t\tstyle=\"").concat(this.settings.visibility.arrows.next ? '' : 'visibility: hidden', "\">\n\t\t\t\t\t").concat((_this$name$arrow$next = this.name.arrow.next[this.settings.lang]) !== null && _this$name$arrow$next !== void 0 ? _this$name$arrow$next : this.name.arrow.next.en, "\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"vanilla-calendar-content\">\n\t\t\t\t<div class=\"vanilla-calendar-week\"></div>\n\t\t\t\t<div class=\"vanilla-calendar-days\"></div>\n\t\t\t</div>\n\t\t");
     }
   }, {
     key: "selectingDate",
     value: function selectingDate() {
       this.selectedDate = null;
-      this.selectedMonth = this.today.getMonth();
-      this.selectedYear = this.today.getFullYear();
+      this.selectedMonth = this.date.getMonth();
+      this.selectedYear = this.date.getFullYear();
 
       if (this.settings.selected.date !== null) {
         this.selectedDate = this.settings.selected.date;
@@ -94,9 +96,9 @@ var VanillaCalendar = /*#__PURE__*/function () {
   }, {
     key: "createMonth",
     value: function createMonth() {
-      var monthEl = this.calendar.querySelector('.vanilla-calendar-month');
-      var arrowPrev = this.calendar.querySelector('.vanilla-calendar-arrow_prev');
-      var arrowNext = this.calendar.querySelector('.vanilla-calendar-arrow_next');
+      var monthEl = this.HTMLElement.querySelector('.vanilla-calendar-month');
+      var arrowPrev = this.HTMLElement.querySelector('.vanilla-calendar-arrow_prev');
+      var arrowNext = this.HTMLElement.querySelector('.vanilla-calendar-arrow_next');
       var monthMin = this.settings.range.min ? new Date(this.settings.range.min).getMonth() : null;
       var monthMax = this.settings.range.max ? new Date(this.settings.range.max).getMonth() : null;
 
@@ -121,7 +123,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
   }, {
     key: "createWeek",
     value: function createWeek() {
-      var weekEl = this.calendar.querySelector('.vanilla-calendar-week');
+      var weekEl = this.HTMLElement.querySelector('.vanilla-calendar-week');
       var week = this.name.week[this.settings.lang];
       week.push(week.shift());
 
@@ -130,11 +132,11 @@ var VanillaCalendar = /*#__PURE__*/function () {
         var weekDay = document.createElement('span');
         weekDay.className = 'vanilla-calendar-week__day';
 
-        if (this.settings.weekend && this.settings.iso8601) {
+        if (this.settings.visibility.weekend && this.settings.iso8601) {
           if (i === 5 || i === 6) {
             weekDay.classList.add('vanilla-calendar-week__day_weekend');
           }
-        } else if (this.settings.weekend && !this.settings.iso8601) {
+        } else if (this.settings.visibility.weekend && !this.settings.iso8601) {
           if (i === 0 || i === 6) {
             weekDay.classList.add('vanilla-calendar-week__day_weekend');
           }
@@ -157,7 +159,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
       }
 
       var daysSelectedMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
-      var daysEl = this.calendar.querySelector('.vanilla-calendar-days');
+      var daysEl = this.HTMLElement.querySelector('.vanilla-calendar-days');
       daysEl.innerHTML = '';
       if (this.settings.selecting) daysEl.classList.add('vanilla-calendar-days_selecting');
 
@@ -197,7 +199,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
           dayEl.innerText = "".concat(i);
           dayEl.dataset.calendarDay = date; // if weekend
 
-          if (_this.settings.weekend && (dayID === 0 || dayID === 6)) {
+          if (_this.settings.visibility.weekend && (dayID === 0 || dayID === 6)) {
             dayEl.classList.add('vanilla-calendar-day_weekend');
           } // if holidays
 
@@ -211,13 +213,13 @@ var VanillaCalendar = /*#__PURE__*/function () {
           } // if today
 
 
-          var thisToday = i === _this.today.getDate();
+          var thisToday = i === _this.date.getDate();
 
-          var thisMonth = _this.selectedMonth === _this.today.getMonth();
+          var thisMonth = _this.selectedMonth === _this.date.getMonth();
 
-          var thisYear = _this.selectedYear === _this.today.getFullYear();
+          var thisYear = _this.selectedYear === _this.date.getFullYear();
 
-          if (_this.settings.today && thisToday && thisMonth && thisYear) {
+          if (_this.settings.visibility.today && thisToday && thisMonth && thisYear) {
             dayEl.classList.add('vanilla-calendar-day_today');
           } // if selected day
 
@@ -317,7 +319,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
     value: function click() {
       var _this2 = this;
 
-      this.calendar.addEventListener('click', function (e) {
+      this.HTMLElement.addEventListener('click', function (e) {
         if (e.target.closest('.vanilla-calendar-arrow')) {
           _this2.changeMonth(e.target);
         } else if (_this2.settings.selecting && e.target.closest('.vanilla-calendar-day')) {
