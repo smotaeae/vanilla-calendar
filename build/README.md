@@ -1,6 +1,6 @@
 # Vanilla JS Calendar
 
-Vanilla js calendar without using additional packages. [DEMO](https://vanilla-calendar.frontend.uvarov.tech/)
+Vanilla JS calendar without using additional packages. [DEMO](https://vanilla-calendar.frontend.uvarov.tech/)
 
 ## Initialize
 

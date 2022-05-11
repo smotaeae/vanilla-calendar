@@ -14,7 +14,7 @@ const paths = {
 	src: 'src/*.*',
 	dest: 'dest/',
 	build: 'build/',
-	npm: 'src/npm/**/*.*',
+	npm: 'src/npm/**/*',
 	fonts: {
 		src: 'src/fonts/**/*.{woff,woff2}',
 		dest: 'dest/fonts/',
@@ -24,10 +24,12 @@ const paths = {
 		dest: 'dest/img/',
 	},
 	js: {
+		watch: 'src/js/**/*.js',
 		src: ['src/js/**/*.js', '!src/js/other/**/*.js'],
 		dest: 'dest/js/',
 	},
 	styles: {
+		watch: 'src/styles/**/*.scss',
 		src: ['src/styles/**/*.scss', '!src/styles/other/**/*.scss'],
 		dest: 'dest/css/',
 	},
@@ -151,8 +153,8 @@ function copy() {
 
 function watch() {
 	gulp.watch(paths.src, gulp.series(files, reload));
-	gulp.watch(paths.js.src, gulp.series(gulp.parallel(js, jsMinify), reload));
-	gulp.watch(paths.styles.src, gulp.series(gulp.parallel(styles, stylesMinify), reload));
+	gulp.watch(paths.js.watch, gulp.series(gulp.parallel(js, jsMinify), reload));
+	gulp.watch(paths.styles.watch, gulp.series(gulp.parallel(styles, stylesMinify), reload));
 }
 
 const dest = gulp.series(clean, gulp.parallel(files, fonts, img), gulp.parallel(js, jsMinify), gulp.parallel(styles, stylesMinify));
