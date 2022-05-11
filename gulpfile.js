@@ -40,10 +40,22 @@ function reload(done) {
 
 function server(done) {
 	browserSync.init({
-		reloadDebounce: 1000,
 		notify: false,
+		ui: false,
+		reloadDebounce: 1000,
 		server: {
 			baseDir: paths.dest,
+		},
+		snippetOptions: {
+			rule: {
+				match: /<head>/i,
+				fn(snippet, match) {
+					const {
+						groups: { src },
+					} = /src='(?<src>[^']+)'/u.exec(snippet);
+					return `<script src="${src}" async></script>${match}`;
+				},
+			},
 		},
 	});
 	done();
