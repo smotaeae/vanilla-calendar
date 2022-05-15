@@ -31,41 +31,55 @@ It’s possible to manually include the necessary `<script>` tags in the end bod
 
 The `HTMLElement` option is mandatory, all other options are optional.
 
-| Name | Default | Description |
-| ---- | :-----: | ----------- |
-| HTMLElement | — | DOM object |
-| date | new Date() | The day that will be considered today. The date is provided in the `new Date()` method. |
-| settings.lang | en | Сalendar language. |
-| settings.iso8601 | true | Weeks in ISO 8601 format. |
-| settings.selecting | true | Disable click by day. |
-| settings.range.min | null | The Minimum date to display the selection. The date is passed as a string in year-month-day format. |
-| settings.range.max | null | The maximum date to display the selection. The date is passed as a string in year-month-day format. |
-| settings.range.values | null | An array of dates to display and select. The date is passed as a string in year-month-day format.|
-| settings.selected.date | null | Selected date. The date is passed as a string in year-month-day format. |
-| settings.selected.month | null | Selected month. |
-| settings.selected.year | null | Selected year. |
-| settings.selected.holidays | null | An array of dates with optional holidays or weekends. The date is passed as a string in year-month-day format. |
-| settings.visibility.weekend | true | Highlight weekend. |
-| settings.visibility.today | true | Highlight today. |
-| settings.visibility.months | true | Show months with inactive dates. |
-| settings.visibility.year | true | Show year. |
-| settings.visibility.arrows.prev | true | Show prev arrow. |
-| settings.visibility.arrows.next |true | Show next arrow. |
+| Name |   Type   |  Default  | Description |
+| ---- | :------: | :-------: | ----------- |
+| HTMLElement | DOM object | null | Indicates in which object the calendar will be initialized. |
+| type | String | 'default' | Calendar type. Possible options: 'default', 'month', 'year'. |
+| date.min | String | '1970-01-01' | The minimum possible date that the calendar will take into account. |
+| date.max | String | '2470-12-31' | The maximum possible date that the calendar will take into account. |
+| date.today | Date object | new Date() | Specifies which day the calendar will consider today. |
+| settings.lang | String | 'en' | Indicates what language the labels will be in. The available default options are 'ru' and 'en'. It is also possible to install any other language, see the demo.|
+| settings.iso8601 | Boolean | true | Weeks in ISO 8601 format. |
+| settings.range.min | String | null | Dates less than this will be considered disabled. |
+| settings.range.max | String | null | Dates greater than this will be considered disabled. |
+| settings.range.disabled | Array | null | Force the specified dates to be disabled. |
+| settings.selection.day | Boolean | true | Allow to choose a day. |
+| settings.selection.month | Boolean | true | Allow to select a month. |
+| settings.selection.year | Boolean | true | Allow to select a year. |
+| settings.selected.date | String | null | Selected day by default. |
+| settings.selected.month | Number | null | Selected month by default. |
+| settings.selected.year | Number | null | Selected year by default. |
+| settings.selected.holidays | Array | null | The specified days will be considered additional days off. |
+| settings.visibility.weekend | Boolean | true | Hightlight the weekend. |
+| settings.visibility.today | Boolean | true | Hightlight the today. |
+| settings.visibility.disabled | Boolean | false | Show disabled days. |
+| actions.clickDay | Function | null | The method is triggered after clicking on a day in the calendar, but before other operations. |
+| actions.clickMonth | Function | null | The method is triggered after clicking on a month in the calendar, but before other operations. |
+| actions.clickYear | Function | null | The method is triggered after clicking on a year in the calendar, but before other operations. |
 
 ## Usage example
 
 ```js
 const calendar = new VanillaCalendar({
  HTMLElement: document.querySelector('.vanilla-calendar'),
- date: new Date('2022-01-07'),
+ type: 'month',
+ date: {
+  min: '2000-01-01',
+  max: '2030-12-31',
+  today: new Date('2022-01-07'),
+ },
  settings: {
   lang: 'ru',
   iso8601: true,
-  selecting: true,
   range: {
    min: '2022-01-01',
    max: '2022-02-12',
-   values: ['2022-01-25'],
+   disabled: ['2022-01-25'],
+  },
+  selection: {
+   day: true,
+   month: false,
+   year: false,
   },
   selected: {
    date: '2022-01-09',
@@ -74,14 +88,20 @@ const calendar = new VanillaCalendar({
    holidays: ['2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05'],
   },
   visibility: {
-   weekend: true,
+   weekend: false,
    today: true,
-   months: false,
-   year: true,
-   arrows: {
-    prev: true,
-    next: true,
-   },
+   disabled: true,
+  },
+ },
+ actions: {
+  clickDay(e) {
+   alert(e.target.dataset.calendarDay);
+  },
+  clickMonth(e) {
+   alert(e.target.dataset.calendarMonth);
+  },
+  clickYear(e) {
+   alert(e.target.dataset.calendarYear);
   },
  },
 });
@@ -92,7 +112,7 @@ calendar.init();
 Change settings and update:
 
 ```js
-calendar.date = new Date('2022-01-25');
+calendar.date.today = new Date('2022-01-25');
 calendar.settings.lang = 'en';
 calendar.settings.iso8601 = false;
 calendar.settings.selected.date = '2022-01-15';
