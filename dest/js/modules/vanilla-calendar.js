@@ -360,14 +360,14 @@ var VanillaCalendar = /*#__PURE__*/function () {
       if (element.closest('.vanilla-calendar-arrow_prev')) {
         if (this.selectedMonth !== 0) {
           this.selectedMonth -= 1;
-        } else {
+        } else if (this.settings.selection.year) {
           this.selectedYear -= 1;
           this.selectedMonth = lastMonth;
         }
       } else if (element.closest('.vanilla-calendar-arrow_next')) {
         if (this.selectedMonth !== lastMonth) {
           this.selectedMonth += 1;
-        } else {
+        } else if (this.settings.selection.year) {
           this.selectedYear += 1;
           this.selectedMonth = 0;
         }

@@ -6,24 +6,13 @@
 
 .main-content {
 	display: block;
-	background-color: #f1f1f1;
-}
+	background-color: white;
+	padding-left: 15px;
+	padding-right: 15px;
 
-.github {
-	position: absolute;
-	z-index: 2;
-	right: 25px;
-	bottom: 20px;
-	display: block;
-	font-size: 0;
-	width: 50px;
-	height: 50px;
-	background-color: #756855;
-	mask: url('../img/github.svg') no-repeat 50% 50%;
-
-	&:hover {
-		background-color: black;
-		transition: background-color 0.1s;
+	@media (min-width: 1200px) {
+		padding-left: calc(50% - 576px);
+		padding-right: calc(50% - 576px);
 	}
 }
 
@@ -31,6 +20,9 @@
 	$section: &;
 
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin: 60px auto 30px;
 	max-width: 900px;
 	padding: 0 15px;
@@ -42,81 +34,135 @@
 		margin-bottom: 0;
 	}
 
-	&_main {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		margin-top: 0;
-		max-width: 100%;
-		min-height: 100vh;
-		padding: 50px 15px 100px;
-		align-items: center;
-		background: #20b2aa;
-		background: linear-gradient(to bottom right, #20b2aa, #ffcc97);
-		border-bottom: 0;
+	&__h1 {
+		display: block;
+		text-align: center;
+		margin: 0 auto 15px;
+		font-size: 42px;
+		line-height: 58px;
+		font-weight: 700;
 
-		#{$section}__title {
-			display: block;
-			width: max-content;
-			max-width: 100%;
-			margin: 0 auto 20px;
-			font-size: 50px;
-			line-height: 50px;
-			font-weight: 700;
+		span {
+			display: inline-block;
+			vertical-align: baseline;
+			font-size: 14px;
+			line-height: 22px;
+			font-weight: 400;
+			padding: 0 4px;
+			border-radius: 4px;
+			background-color: tomato;
 			color: white;
-			text-shadow: 0 0 3px #54635e;
-		}
-
-		#{$section}__subtitle {
-			display: block;
-			width: max-content;
-			max-width: 100%;
-			margin: 0 auto 40px;
-			font-size: 16px;
-			line-height: 24px;
-			font-weight: 600;
-			color: white;
-			text-shadow: 0 0 3px #54635e;
+			margin-left: 8px;
+			transform: translateY(-3px);
 		}
 	}
 
-	&__title {
+	&__h2 {
 		display: block;
-		margin-bottom: 15px;
+		text-align: center;
+		width: 100%;
+		margin: 0 auto 15px;
 		font-size: 24px;
 		line-height: 28px;
-		font-weight: 700;
-		text-align: center;
+		font-weight: 600;
 	}
 
-	&__subtitle {
+	&__text {
 		display: block;
-		margin-bottom: 35px;
-		font-size: 16px;
-		line-height: 20px;
-		font-weight: 400;
+		max-width: 550px;
+		width: 100%;
 		text-align: center;
+		margin: 0 0 20px;
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 300;
+
+		u {
+			text-decoration: none;
+			border-bottom: 1px solid black;
+		}
 	}
 
 	.vanilla-calendar {
-		margin: 0 auto;
+		margin: 0 auto 20px;
 		border: 1px solid #e0e0e0;
 	}
 }
 
 pre.code {
+	font-family: 'JetBrainsMono', monospace;
 	display: block;
-	margin: 20px auto 0;
 	background-color: transparent;
 	font-size: 0;
-	width: 800px;
-	max-width: 100%;
+	max-width: 800px;
+	width: 100%;
+	margin-bottom: 20px;
+
+	* {
+		font-family: 'JetBrainsMono', monospace !important;
+	}
 
 	code {
-		background-color: white;
-		border: 1px solid #e0e0e0;
+		background-color: whitesmoke;
 		border-radius: 4px;
 		font-size: 14px;
-		padding: 0 25px;
+		padding: 18px 20px;
 	}
+}
+
+.menu-list {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	font-size: 0;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 20px;
+
+	&__item {
+		display: block;
+		padding-right: 10px;
+		margin-right: 10px;
+		border-right: 1px solid black;
+
+		&:last-child {
+			border-right: 0;
+		}
+	}
+
+	&__link {
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 600;
+		color: black;
+
+		&:hover {
+			color: lightseagreen;
+		}
+	}
+}
+
+.calendars {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: start;
+	gap: 10px;
+	margin: 20px 0 0;
+
+	@media (max-width: 888px) {
+		grid-auto-flow: row;
+	}
+}
+
+.tag {
+	display: block;
+	border-radius: 4px;
+	width: max-content;
+	padding: 3px 6px;
+	font-size: 14px;
+	line-height: 16px;
+	font-weight: 400;
+	color: darkgoldenrod;
+	background-color: antiquewhite;
+	margin-bottom: 10px;
 }

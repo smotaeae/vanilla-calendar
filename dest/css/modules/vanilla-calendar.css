@@ -101,6 +101,7 @@
 }
 .vanilla-calendar-month_disabled {
   pointer-events: none;
+  color: silver;
 }
 .vanilla-calendar-year {
   font-size: 16px;
@@ -117,6 +118,7 @@
 }
 .vanilla-calendar-year_disabled {
   pointer-events: none;
+  color: silver;
 }
 .vanilla-calendar-week {
   display: grid;

@@ -4,7 +4,7 @@ Vanilla JS calendar without using additional packages. [DEMO](https://vanilla-ca
 
 ## Initialize
 
-Get vanilla-calendar in one of the following ways:
+Get vanilla-calendar using one of the methods provided.
 
 ### NPM
 
@@ -12,24 +12,35 @@ Get vanilla-calendar in one of the following ways:
 npm install @uvarov.frontend/vanilla-calendar
 ```
 
-Then import it in your javascript file
+Then import it in your javascript file.
 
 ```js
 import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';
 ```
 
-### or Script tag
+Import base styles in your file.
 
-It’s possible to manually include the necessary `<script>` tags in the end body of your HTML page and then initialize a
-calendar via browser globals.
-
-```html
-
-<script>var exports = {};</script>
-<script src="./js/modules/vanilla-calendar.min.js"></script>
+```css
+@import '/node_modules/@uvarov.frontend/vanilla-calendar/vanilla-calendar.min.css';
 ```
 
-## API
+### or Script tag
+
+The calendar can be manually included in an HTML page and then initialized via global browser variables.
+
+#### head
+
+```html
+<link href="./vanilla-calendar.min.css" rel="stylesheet">
+```
+#### head or end body
+
+```html
+<script>var exports = {}</script>
+<script src="./vanilla-calendar.min.js"></script>
+```
+
+## Documentation
 
 The `HTMLElement` option is mandatory, all other options are optional.
 
@@ -63,49 +74,49 @@ The `HTMLElement` option is mandatory, all other options are optional.
 
 ```js
 const calendar = new VanillaCalendar({
-	HTMLElement: document.querySelector('.vanilla-calendar'),
-	type: 'month',
-	date: {
-		min: '2000-01-01',
-		max: '2030-12-31',
-		today: new Date('2022-01-07'),
-	},
-	settings: {
-		lang: 'ru',
-		iso8601: true,
-		range: {
-			min: '2022-01-01',
-			max: '2022-02-12',
-			disabled: ['2022-01-25'],
-		},
-		selection: {
-			day: 'multiple',
-			month: false,
-			year: false,
-		},
-		selected: {
-			dates: ['2022-01-09', '2022-01-10'],
-			month: 1,
-			year: 2022,
-			holidays: ['2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05'],
-		},
-		visibility: {
-			weekend: false,
-			today: true,
-			disabled: true,
-		},
-	},
-	actions: {
-		clickDay(e) {
-			alert(e.target.dataset.calendarDay);
-		},
-		clickMonth(e) {
-			alert(e.target.dataset.calendarMonth);
-		},
-		clickYear(e) {
-			alert(e.target.dataset.calendarYear);
-		},
-	},
+  HTMLElement: document.querySelector('.vanilla-calendar'),
+  type: 'month',
+  date: {
+    min: '2000-01-01',
+    max: '2030-12-31',
+    today: new Date('2022-01-07'),
+  },
+  settings: {
+    lang: 'ru',
+    iso8601: true,
+    range: {
+      min: '2022-01-01',
+      max: '2022-02-12',
+      disabled: ['2022-01-25'],
+    },
+    selection: {
+      day: 'multiple',
+      month: false,
+      year: false,
+    },
+    selected: {
+      dates: ['2022-01-09', '2022-01-10'],
+      month: 1,
+      year: 2022,
+      holidays: ['2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05'],
+    },
+    visibility: {
+      weekend: false,
+      today: true,
+      disabled: true,
+    },
+  },
+  actions: {
+    clickDay(e) {
+      alert(e.target.dataset.calendarDay);
+    },
+    clickMonth(e) {
+      alert(e.target.dataset.calendarMonth);
+    },
+    clickYear(e) {
+      alert(e.target.dataset.calendarYear);
+    },
+  },
 });
 
 calendar.init();

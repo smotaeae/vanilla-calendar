@@ -343,6 +343,13 @@ template {
 
 @font-face {
   font-family: "Lato";
+  src: url("../fonts/Lato/Lato-Light.woff2") format("woff2"), url("../fonts/Lato/Lato-Light.woff") format("woff");
+  font-display: fallback;
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
   src: url("../fonts/Lato/Lato-Regular.woff2") format("woff2"), url("../fonts/Lato/Lato-Regular.woff") format("woff");
   font-display: fallback;
   font-weight: 400;
@@ -358,6 +365,20 @@ template {
 @font-face {
   font-family: "Lato";
   src: url("../fonts/Lato/Lato-Bold.woff2") format("woff2"), url("../fonts/Lato/Lato-Bold.woff") format("woff");
+  font-display: fallback;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Regular.woff2") format("woff2"), url("../fonts/JetBrainsMono/JetBrainsMono-Regular.woff") format("woff");
+  font-display: fallback;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../fonts/JetBrainsMono/JetBrainsMono-Semibold.woff2") format("woff2"), url("../fonts/JetBrainsMono/JetBrainsMono-Semibold.woff") format("woff");
   font-display: fallback;
   font-weight: 700;
   font-style: normal;
@@ -502,31 +523,29 @@ iframe {
 
 .main-content {
   display: block;
-  background-color: #f1f1f1;
+  background-color: white;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-
-.github {
-  position: absolute;
-  z-index: 2;
-  right: 25px;
-  bottom: 20px;
-  display: block;
-  font-size: 0;
-  width: 50px;
-  height: 50px;
-  background-color: #756855;
-  -webkit-mask: url("../img/github.svg") no-repeat 50% 50%;
-  mask: url("../img/github.svg") no-repeat 50% 50%;
-}
-.github:hover {
-  background-color: black;
-  -webkit-transition: background-color 0.1s;
-  -o-transition: background-color 0.1s;
-  transition: background-color 0.1s;
+@media (min-width: 1200px) {
+  .main-content {
+    padding-left: calc(50% - 576px);
+    padding-right: calc(50% - 576px);
+  }
 }
 
 .section {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin: 60px auto 30px;
   max-width: 900px;
   padding: 0 15px;
@@ -537,89 +556,134 @@ iframe {
   border-bottom: 0;
   margin-bottom: 0;
 }
-.section_main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-top: 0;
-  max-width: 100%;
-  min-height: 100vh;
-  padding: 50px 15px 100px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #20b2aa;
-  background: -webkit-gradient(linear, left top, right bottom, from(#20b2aa), to(#ffcc97));
-  background: -o-linear-gradient(top left, #20b2aa, #ffcc97);
-  background: linear-gradient(to bottom right, #20b2aa, #ffcc97);
-  border-bottom: 0;
-}
-.section_main .section__title {
+.section__h1 {
   display: block;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  max-width: 100%;
-  margin: 0 auto 20px;
-  font-size: 50px;
-  line-height: 50px;
+  text-align: center;
+  margin: 0 auto 15px;
+  font-size: 42px;
+  line-height: 58px;
   font-weight: 700;
-  color: white;
-  text-shadow: 0 0 3px #54635e;
 }
-.section_main .section__subtitle {
-  display: block;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  max-width: 100%;
-  margin: 0 auto 40px;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
+.section__h1 span {
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: tomato;
   color: white;
-  text-shadow: 0 0 3px #54635e;
+  margin-left: 8px;
+  -webkit-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  transform: translateY(-3px);
 }
-.section__title {
+.section__h2 {
   display: block;
-  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 15px;
   font-size: 24px;
   line-height: 28px;
-  font-weight: 700;
-  text-align: center;
+  font-weight: 600;
 }
-.section__subtitle {
+.section__text {
   display: block;
-  margin-bottom: 35px;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 400;
+  max-width: 550px;
+  width: 100%;
   text-align: center;
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+}
+.section__text u {
+  text-decoration: none;
+  border-bottom: 1px solid black;
 }
 .section .vanilla-calendar {
-  margin: 0 auto;
+  margin: 0 auto 20px;
   border: 1px solid #e0e0e0;
 }
 
 pre.code {
+  font-family: "JetBrainsMono", monospace;
   display: block;
-  margin: 20px auto 0;
   background-color: transparent;
   font-size: 0;
-  width: 800px;
-  max-width: 100%;
+  max-width: 800px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+pre.code * {
+  font-family: "JetBrainsMono", monospace !important;
 }
 pre.code code {
-  background-color: white;
-  border: 1px solid #e0e0e0;
+  background-color: whitesmoke;
   border-radius: 4px;
   font-size: 14px;
-  padding: 0 25px;
+  padding: 18px 20px;
+}
+
+.menu-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  list-style-type: none;
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+}
+.menu-list__item {
+  display: block;
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid black;
+}
+.menu-list__item:last-child {
+  border-right: 0;
+}
+.menu-list__link {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: black;
+}
+.menu-list__link:hover {
+  color: lightseagreen;
+}
+
+.calendars {
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  gap: 10px;
+  margin: 20px 0 0;
+}
+@media (max-width: 888px) {
+  .calendars {
+    grid-auto-flow: row;
+  }
+}
+
+.tag {
+  display: block;
+  border-radius: 4px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 3px 6px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: darkgoldenrod;
+  background-color: antiquewhite;
+  margin-bottom: 10px;
 }

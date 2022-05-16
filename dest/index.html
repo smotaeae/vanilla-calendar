@@ -1,258 +1,458 @@
 <!doctype html>
 <html lang="ru-RU">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="initial-scale=1,width=device-width">
-		<meta name="format-detection" content="telephone=no">
-		<title>Vanilla JS Calendar</title>
-		<meta name="description" content="Vanilla js calendar without using additional packages">
-		<meta name="keywords" content="vanilla, js, calendar, lite">
-		<link rel="shortcut icon" href="./favicon.svg">
-		<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
-		<link href="./css/modules/vanilla-calendar.min.css" rel="stylesheet">
-		<link href="./css/main.min.css" rel="stylesheet">
-		<!-- Yandex.Metrika counter -->
-		<script type="text/javascript" >
-			(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-			m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>Vanilla JS Calendar</title>
+    <meta name="description" content="Vanilla js calendar without using additional packages">
+    <meta name="keywords" content="vanilla, js, calendar, lite">
+    <link rel="shortcut icon" href="./favicon.svg">
+    <link href="./css/modules/vanilla-calendar.min.css" rel="stylesheet">
+    <link href="./css/main.min.css" rel="stylesheet">
+    <link href="./css/highlight.min.css" rel="stylesheet">
+    <script src="./js/highlight.min.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <!-- <script type="text/javascript" >
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-			ym(88731088, "init", {
-					clickmap:true,
-					trackLinks:true,
-					accurateTrackBounce:true,
-					webvisor:true
-			});
-		</script>
-		<noscript><div><img src="https://mc.yandex.ru/watch/88731088" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-		<!-- /Yandex.Metrika counter -->
-	</head>
+      ym(88731088, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/88731088" style="position:absolute; left:-9999px;" alt="" /></div></noscript> -->
+    <!-- /Yandex.Metrika counter -->
+  </head>
 
-	<body>
-		<div class="wrapper">
-			<div class="main-wrapper">
-				<main class="main-content">
-					<section class="section section_main">
-						<h1 class="section__title">VANILLA-CALENDAR</h1>
-						<p class="section__subtitle">A simple calendar with no dependencies, no input, written in native javascript.<br>The size of the minified file is approximately 9.2kb and 2.6kb gzip.</p>
-						<a href="https://github.com/uvarov-frontend/vanilla-calendar" class="github">GitHub</a>
-						<div class="vanilla-calendar" id="one"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
-});
+  <body>
+    <div class="wrapper">
+      <div class="main-wrapper">
+        <main class="main-content">
+<section class="section section_main">
+  <h1 class="section__h1">VANILLA-CALENDAR<span>v1.2.3</span></h1>
+  <ul class="menu-list">
+    <li class="menu-list__item">
+      <a href="https://github.com/uvarov-frontend/vanilla-calendar" class="menu-list__link">GitHub</a>
+    </li>
+    <li class="menu-list__item">
+      <a href="https://www.npmjs.com/package/@uvarov.frontend/vanilla-calendar" class="menu-list__link">NPM</a>
+    </li>
+    <li class="menu-list__item">
+      <a href="./vanilla-calendar.zip" class="menu-list__link">Download</a>
+    </li>
+  </ul>
+  <p class="section__text">A simple yet feature rich calendar with no dependencies and <u>no «input» tag</u>, written in vanilla JavaScript.<br>The size of the minified file .js is approximately <strong>16kb</strong> and <strong>3.5kb</strong> gzip.</p>
+<h2 class="section__h2">Initialize</h2>
+<p class="section__text">Get vanilla-calendar using one of the methods provided.</p>
+<h3 class="section__h3">NPM</h3>
+<pre class="code">
+<code class="language-bash">npm install @uvarov.frontend/vanilla-calendar</code>
+</pre>
+<p class="section__text">Then import it in your javascript file.</p>
+<pre class="code">
+<code class="language-js">import VanillaCalendar from '@uvarov.frontend/vanilla-calendar';</code>
+</pre>
+<p class="section__text">Import base styles in your file.</p>
+<pre class="code">
+<code class="language-css">@import '/node_modules/@uvarov.frontend/vanilla-calendar/vanilla-calendar.min.css';</code>
+</pre>
+<h3 class="section__h3">or Script tag</h3>
+<p class="section__text">The calendar can be manually included in an HTML page and then initialized via global browser variables.</p>
+<span class="tag">head</span>
+<pre class="code">
+<code class="language-html">&lt;link href="./vanilla-calendar.min.css" rel="stylesheet"></code>
+</pre>
+<span class="tag">head or end body</span>
+<pre class="code">
+<code class="language-html">&lt;script>var exports = {}&lt;/script>
+&lt;script src="./vanilla-calendar.min.js">&lt;/script></code>
+</pre>
+</section>
 
-calendar.init();
-							</code>
-						</pre>
-					</section>
-
-					<!-- <section class="section">
-						<h2 class="section__title">ISO 8601</h2>
-						<p class="section__subtitle">The default ISO 8601 format, you can change it.</p>
-						<div class="vanilla-calendar" id="two"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
-  settings: {
-    iso8601: false,
+<section class="section">
+  <h2 class="section__h2">Examples</h2>
+  <p class="section__text">Below will be shown examples of using this calendar with various options.</p>
+  <p class="section__text">First, let's define the type of calendar. We will also add the appropriate method that will catch a click on the element.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Type: month</span>
+      <div class="vanilla-calendar" id="calendar-month"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Type: default</span>
+      <div class="vanilla-calendar" id="calendar-default"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Type: year</span>
+      <div class="vanilla-calendar" id="calendar-year"></div>
+    </div>
+  </div>
+<pre class="code">
+<code class="language-js">// Type: month
+const calendarMonth = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-month'),
+  type: 'month',
+  actions: {
+    clickMonth(e) {
+      alert(e.target.dataset.calendarMonth);
+    },
   },
 });
+calendarMonth.init();
 
-calendar.init();
-							</code>
-						</pre>
-					</section>
+// Type: default
+const calendarDefault = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-default'),
+  actions: {
+    clickDay(e) {
+      alert(e.target.dataset.calendarDay);
+    },
+  },
+});
+calendarDefault.init();
 
-					<section class="section">
-						<h2 class="section__title">Language</h2>
-						<p class="section__subtitle">By default, only two languages are available - English and Russian.</p>
-						<div class="vanilla-calendar" id="threeRus"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
+// Type: year
+const calendarYear = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-year'),
+  type: 'year',
+  actions: {
+    clickYear(e) {
+      alert(e.target.dataset.calendarYear);
+    },
+  },
+});
+calendarYear.init();</code>
+</pre>
+</section>
+
+<section class="section">
+  <h2 class="section__h2">Calendar life cycle</h2>
+  <p class="section__text">This is the main data that the calendar will take into account.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Date min/max</span>
+      <div class="vanilla-calendar" id="calendar-date-minmax"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Other today</span>
+      <div class="vanilla-calendar" id="calendar-other-today"></div>
+    </div>
+  </div>
+<pre class="code"><code class="language-js">// Date min/max
+const calendarDateMinMax = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-date-minmax'),
+  date: {
+    min: '2000-01-01',
+    max: '2030-12-31',
+  },
+});
+calendarDateMinMax.init();
+
+// Other today
+const otherToday = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-other-today'),
+  date: {
+    today: new Date('2022-01-07'),
+  },
+});
+otherToday.init();</code>
+</pre>
+</section>
+
+<section class="section">
+  <h2 class="section__h2">Сhange language</h2>
+  <p class="section__text">By default, only two languages are available - English and Russian. You can add any language, for example Kazakh.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Russian language</span>
+      <div class="vanilla-calendar" id="calendar-russian-lang"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Other language</span>
+      <div class="vanilla-calendar" id="calendar-other-lang"></div>
+    </div>
+  </div>
+<pre class="code"><code class="language-js">// Russian language
+const calendarRussianLang = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-russian-lang'),
   settings: {
     lang: 'ru',
   },
 });
+calendarRussianLang.init();
 
-calendar.init();
-							</code>
-						</pre>
-					</section>
-
-					<section class="section">
-						<h2 class="section__title">Custom language</h2>
-						<p class="section__subtitle">You can add any language, for example Kazakh.</p>
-						<div class="vanilla-calendar" id="three"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
+// Other language
+const calendarOtherLang = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-other-lang'),
 });
 
-calendar.name.months.kz = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
-calendar.name.week.kz = ['Си', 'Же', 'Ду', 'Сй', 'Ср', 'Бе', 'Жұ'];
-calendar.name.arrow.prev.kz = 'Артқа';
-calendar.name.arrow.next.kz = 'Алға';
-calendar.settings.lang = 'kz';
+calendarOtherLang.name.months.full.kz = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'];
+calendarOtherLang.name.months.reduction.kz = ['Қаң', 'Ақп', 'Нау', 'Сәу', 'Мам', 'Мау', 'Шіл', 'Там', 'Қыр', 'Қаз', 'Қар', 'Жел'];
+calendarOtherLang.name.week.kz = ['Си', 'Же', 'Ду', 'Сй', 'Ср', 'Бе', 'Жұ'];
+calendarOtherLang.name.arrow.prev.kz = 'Артқа';
+calendarOtherLang.name.arrow.next.kz = 'Алға';
+calendarOtherLang.settings.lang = 'kz';
 
-calendar.init();
-							</code>
-						</pre>
-					</section>
+calendarOtherLang.init();</code>
+</pre>
+</section>
 
-					<section class="section">
-						<h2 class="section__title">Disable click by day</h2>
-						<p class="section__subtitle">By default, on a click on a day, an event handler is triggered. This behavior can be disabled.</p>
-						<div class="vanilla-calendar" id="four"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
+<section class="section">
+  <h2 class="section__h2">Disable ISO 8601</h2>
+  <p class="section__text">By default, the week starts on Monday, you can change this and make Sunday the first day.</p>
+  <div class="vanilla-calendar" id="calendar-iso8601"></div>
+<pre class="code"><code class="language-js">const calendarISO8601 = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-iso8601'),
   settings: {
-    selecting: false,
+    iso8601: false,
   },
 });
+calendarISO8601.init();</code>
+</pre>
+</section>
 
-calendar.init();
-							</code>
-						</pre>
-					</section>
+<section class="section">
+  <h2 class="section__h2">Date range</h2>
+  <p class="section__text">Manage minimum, maximum, as well as forcibly disabled dates.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Date range min/max</span>
+      <div class="vanilla-calendar" id="calendar-date-range-minmax"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Forcibly disabled dates</span>
+      <div class="vanilla-calendar" id="calendar-disabled-dates"></div>
+    </div>
+  </div>
+<pre class="code"><code class="language-js">// Date range min/max
+const calendarDateRangeMinMax = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-date-range-minmax'),
+  date: {
+    today: new Date('2022-01-07'),
+  },
+  settings: {
+    range: {
+      min: '2022-01-01',
+      max: '2022-02-12',
+    },
+  },
+});
+calendarDateRangeMinMax.init();
 
-					<section class="section">
-						<h2 class="section__title">Highlight weekend and today</h2>
-						<p class="section__subtitle">You can disable highlighting the weekend and today.</p>
-						<div class="vanilla-calendar" id="five"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
+// Forcibly disabled dates
+const calendarDisabledDates = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-disabled-dates'),
+  date: {
+    today: new Date('2022-01-07'),
+  },
+  settings: {
+    range: {
+      min: '2022-01-01',
+      max: '2022-02-12',
+      disabled: ['2022-01-20', '2022-01-25', '2022-01-26'],
+    },
+  },
+});
+calendarDisabledDates.init();
+</code>
+</pre>
+</section>
+
+<section class="section">
+  <h2 class="section__h2">Disable selection</h2>
+  <p class="section__text">You can disable the ability to select the day, month, or year.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Disable selection day</span>
+      <div class="vanilla-calendar" id="calendar-disable-selection-day"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Disable selection month</span>
+      <div class="vanilla-calendar" id="calendar-disable-selection-month"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Disable selection year</span>
+      <div class="vanilla-calendar" id="calendar-disable-selection-year"></div>
+    </div>
+  </div>
+<pre class="code"><code class="language-js">// Disable selection day
+const calendarDisableSelectionDay = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-disable-selection-day'),
+  settings: {
+    selection: {
+      day: false,
+    },
+  },
+});
+calendarDisableSelectionDay.init();
+
+// Disable selection month
+const calendarDisableSelectionMonth = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-disable-selection-month'),
+  settings: {
+    selection: {
+      month: false,
+    },
+  },
+});
+calendarDisableSelectionMonth.init();
+
+// Disable selection year
+const calendarDisableSelectionYear = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-disable-selection-year'),
+  settings: {
+    selection: {
+      year: false,
+    },
+  },
+});
+calendarDisableSelectionYear.init();</code>
+</pre>
+</section>
+
+<section class="section">
+  <h2 class="section__h2">Multiple select days</h2>
+  <p class="section__text">Initially, you can select only one day. Fix it if necessary.</p>
+  <div class="vanilla-calendar" id="calendar-multiple-select-days"></div>
+<pre class="code"><code class="language-js">const calendarMultipleSelectDays = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-multiple-select-days'),
+  settings: {
+    selection: {
+      day: 'multiple',
+    },
+  },
+});
+calendarMultipleSelectDays.init();</code>
+</pre>
+</section>
+
+<section class="section">
+  <h2 class="section__h2">Managing selected dates and holidays</h2>
+  <p class="section__text">You can explicitly specify the selected days, month and year displayed, regardless of the current date.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Selected dates</span>
+      <div class="vanilla-calendar" id="calendar-selected-dates"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Selected holidays</span>
+      <div class="vanilla-calendar" id="calendar-selected-holidays"></div>
+    </div>
+  </div>
+<pre class="code"><code class="language-js">// Selected dates
+const calendarSelectedDates = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-selected-dates'),
+  settings: {
+    selection: {
+      day: 'multiple',
+    },
+    selected: {
+      dates: ['2022-01-09', '2022-01-10', '2022-01-11'],
+      month: 0,
+      year: 2022,
+    },
+  },
+});
+calendarSelectedDates.init();
+
+// Selected holidays
+const calendarSelectedHolidays = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-selected-holidays'),
+  settings: {
+    selected: {
+      month: 0,
+      year: 2022,
+      holidays: [
+        '2022-01-01',
+        '2022-01-02',
+        '2022-01-03',
+        '2022-01-04',
+        '2022-01-05',
+        '2022-01-06',
+        '2022-01-07',
+        '2022-01-08',
+        '2022-01-09',
+        '2022-01-10',
+      ],
+    },
+  },
+});
+calendarSelectedHolidays.init();
+</code>
+</pre>
+</section>
+
+<section class="section">
+  <h2 class="section__h2">Disable highlight</h2>
+  <p class="section__text">You can turn off the highlight of the weekend and today.</p>
+  <div class="calendars">
+    <div class="calendars__calendar">
+      <span class="tag">Disable highlight weekend</span>
+      <div class="vanilla-calendar" id="calendar-disable-highlight-weekend"></div>
+    </div>
+    <div class="calendars__calendar">
+      <span class="tag">Disable highlight today</span>
+      <div class="vanilla-calendar" id="calendar-disable-highlight-today"></div>
+    </div>
+  </div>
+<pre class="code"><code class="language-js">// Disable highlight weekend
+const calendarDisableHighlightWeekend = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-disable-highlight-weekend'),
   settings: {
     visibility: {
       weekend: false,
+    },
+  },
+});
+calendarDisableHighlightWeekend.init();
+
+// Disable highlight today
+const calendarDisableHighlightToday = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-disable-highlight-today'),
+  settings: {
+    visibility: {
       today: false,
     },
   },
 });
+calendarDisableHighlightToday.init();</code>
+</pre>
+</section>
 
-calendar.init();
-							</code>
-						</pre>
-					</section>
-
-					<section class="section">
-						<h2 class="section__title">Displayed day, month, year</h2>
-						<p class="section__subtitle">You can explicitly specify today, the selected date, month and year.</p>
-						<div class="vanilla-calendar" id="six"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
-  date: new Date('2022-01-07'),
-  settings: {
-    selected: {
-      date: '2022-01-09',
-      month: 1,
-      year: 2022,
-    },
+<section class="section">
+  <h2 class="section__h2">Show all dates</h2>
+  <p class="section__text">By default, inactive dates will be hidden, enable if you want to show inactive dates.</p>
+  <div class="vanilla-calendar" id="calendar-enable-inactive-dates"></div>
+<pre class="code"><code class="language-js">const calendarEnableInactiveDates = new VanillaCalendar({
+  HTMLElement: document.querySelector('#calendar-enable-inactive-dates'),
+  date: {
+    today: new Date('2022-01-17'),
   },
-});
-
-calendar.init();
-							</code>
-						</pre>
-					</section>
-
-					<section class="section">
-						<h2 class="section__title">Date range</h2>
-						<p class="section__subtitle">You can set the range of displayed dates, as well as specify which dates should be forcibly active.</p>
-						<div class="vanilla-calendar" id="seven"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
-  date: new Date('2022-01-08'),
   settings: {
-    selected: {
-      month: 1,
-      year: 2022,
-    },
-    range: {
-      min: '2022-01-07',
-      max: '2022-02-12',
-      values: ['2022-01-02', '2022-01-04'],
-    },
-  },
-});
-
-calendar.init();
-							</code>
-						</pre>
-					</section>
-
-					<section class="section">
-						<h2 class="section__title">More weekends or holidays</h2>
-						<p class="section__subtitle">Easily specify your own weekend or holidays.</p>
-						<div class="vanilla-calendar" id="eight"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
-  date: new Date('2022-01-08'),
-  settings: {
-    selected: {
-      month: 1,
-      year: 2022,
-      holidays: ['2022-01-03', '2022-01-04', '2022-01-05', '2022-01-20'],
-    },
-  },
-});
-
-calendar.init();
-							</code>
-						</pre>
-					</section>
-
-					<section class="section">
-						<h2 class="section__title">Do not show non-active months</h2>
-						<p class="section__subtitle">Sometimes there is no need to display months that are not in the specified range.</p>
-						<div class="vanilla-calendar" id="nine"></div>
-						<pre class="code">
-							<code class="language-js">
-const calendar = new VanillaCalendar({
-  HTMLElement: document.querySelector('.vanilla-calendar'),
-  date: new Date('2022-02-08'),
-  settings: {
-    selected: {
-      month: 2,
-      year: 2022,
-    },
-    range: {
-      min: '2022-01-07',
-      max: '2022-02-12',
-    },
+    // Show all dates
     visibility: {
-      months: false,
+      disabled: true,
+    },
+    range: {
+      min: '2022-01-07',
+      max: '2022-02-12',
     },
   },
 });
-
-calendar.init();
-							</code>
-						</pre>
-					</section> -->
-				</main>
-			</div>
-		</div>
-		<script>var exports = {};</script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-		<script src="./js/modules/vanilla-calendar.min.js"></script>
-		<script src="./js/main.min.js"></script>
-	</body>
+calendarEnableInactiveDates.init();</code></pre>
+</section>
+        </main>
+      </div>
+    </div>
+    <script>var exports = {}</script>
+    <script src="./js/modules/vanilla-calendar.min.js"></script>
+    <script src="./js/main.min.js"></script>
+  </body>
 
 </html>
