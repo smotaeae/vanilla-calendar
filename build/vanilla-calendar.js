@@ -33,12 +33,12 @@ var VanillaCalendar = /*#__PURE__*/function () {
         disabled: (_option$settings$rang3 = (_option$settings5 = option.settings) === null || _option$settings5 === void 0 ? void 0 : (_option$settings5$ran = _option$settings5.range) === null || _option$settings5$ran === void 0 ? void 0 : _option$settings5$ran.disabled) !== null && _option$settings$rang3 !== void 0 ? _option$settings$rang3 : null
       },
       selection: {
-        day: (_option$settings$sele = (_option$settings6 = option.settings) === null || _option$settings6 === void 0 ? void 0 : (_option$settings6$sel = _option$settings6.selection) === null || _option$settings6$sel === void 0 ? void 0 : _option$settings6$sel.day) !== null && _option$settings$sele !== void 0 ? _option$settings$sele : true,
+        day: (_option$settings$sele = (_option$settings6 = option.settings) === null || _option$settings6 === void 0 ? void 0 : (_option$settings6$sel = _option$settings6.selection) === null || _option$settings6$sel === void 0 ? void 0 : _option$settings6$sel.day) !== null && _option$settings$sele !== void 0 ? _option$settings$sele : 'single',
         month: (_option$settings$sele2 = (_option$settings7 = option.settings) === null || _option$settings7 === void 0 ? void 0 : (_option$settings7$sel = _option$settings7.selection) === null || _option$settings7$sel === void 0 ? void 0 : _option$settings7$sel.month) !== null && _option$settings$sele2 !== void 0 ? _option$settings$sele2 : true,
         year: (_option$settings$sele3 = (_option$settings8 = option.settings) === null || _option$settings8 === void 0 ? void 0 : (_option$settings8$sel = _option$settings8.selection) === null || _option$settings8$sel === void 0 ? void 0 : _option$settings8$sel.year) !== null && _option$settings$sele3 !== void 0 ? _option$settings$sele3 : true
       },
       selected: {
-        date: (_option$settings$sele4 = (_option$settings9 = option.settings) === null || _option$settings9 === void 0 ? void 0 : (_option$settings9$sel = _option$settings9.selected) === null || _option$settings9$sel === void 0 ? void 0 : _option$settings9$sel.date) !== null && _option$settings$sele4 !== void 0 ? _option$settings$sele4 : null,
+        dates: (_option$settings$sele4 = (_option$settings9 = option.settings) === null || _option$settings9 === void 0 ? void 0 : (_option$settings9$sel = _option$settings9.selected) === null || _option$settings9$sel === void 0 ? void 0 : _option$settings9$sel.dates) !== null && _option$settings$sele4 !== void 0 ? _option$settings$sele4 : null,
         month: (_option$settings$sele5 = (_option$settings10 = option.settings) === null || _option$settings10 === void 0 ? void 0 : (_option$settings10$se = _option$settings10.selected) === null || _option$settings10$se === void 0 ? void 0 : _option$settings10$se.month) !== null && _option$settings$sele5 !== void 0 ? _option$settings$sele5 : null,
         year: (_option$settings$sele6 = (_option$settings11 = option.settings) === null || _option$settings11 === void 0 ? void 0 : (_option$settings11$se = _option$settings11.selected) === null || _option$settings11$se === void 0 ? void 0 : _option$settings11$se.year) !== null && _option$settings$sele6 !== void 0 ? _option$settings$sele6 : null,
         holidays: (_option$settings$sele7 = (_option$settings12 = option.settings) === null || _option$settings12 === void 0 ? void 0 : (_option$settings12$se = _option$settings12.selected) === null || _option$settings12$se === void 0 ? void 0 : _option$settings12$se.holidays) !== null && _option$settings$sele7 !== void 0 ? _option$settings$sele7 : null
@@ -86,12 +86,12 @@ var VanillaCalendar = /*#__PURE__*/function () {
   _createClass(VanillaCalendar, [{
     key: "setVariablesDates",
     value: function setVariablesDates() {
-      this.selectedDate = null;
+      this.selectedDates = [];
       this.selectedMonth = this.date.today.getMonth();
       this.selectedYear = this.date.today.getFullYear();
 
-      if (this.settings.selected.date !== null) {
-        this.selectedDate = this.settings.selected.date;
+      if (this.settings.selected.dates !== null) {
+        this.selectedDates = this.settings.selected.dates;
       }
 
       if (this.settings.selected.month !== null && this.settings.selected.month >= 0 && this.settings.selected.month < 12) {
@@ -137,7 +137,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
     value: function controlArrows() {
       var _this = this;
 
-      if (!this.currentType === ('default' || 'year')) return;
+      if (!['default', 'year'].includes(this.currentType)) return;
       var arrowPrev = this.HTMLElement.querySelector('.vanilla-calendar-arrow_prev');
       var arrowNext = this.HTMLElement.querySelector('.vanilla-calendar-arrow_next');
 
@@ -232,7 +232,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
       var firstDayWeek = Number(firstDay.getDay());
       if (this.settings.iso8601) firstDayWeek = Number((firstDay.getDay() !== 0 ? firstDay.getDay() : 7) - 1);
       var daysEl = this.HTMLElement.querySelector('.vanilla-calendar-days');
-      if (this.settings.selection.day) daysEl.classList.add('vanilla-calendar-days_selecting');
+      if (['single', 'multiple'].includes(this.settings.selection.day)) daysEl.classList.add('vanilla-calendar-days_selecting');
       daysEl.innerHTML = '';
 
       var prevMonth = function prevMonth() {
@@ -296,7 +296,9 @@ var VanillaCalendar = /*#__PURE__*/function () {
           } // if selected day
 
 
-          if (_this2.selectedDate === date) {
+          if (_this2.selectedDates.find(function (selectedDate) {
+            return selectedDate === date;
+          })) {
             dayEl.classList.add('vanilla-calendar-day_selected');
           } // if range min/max
 
@@ -479,10 +481,19 @@ var VanillaCalendar = /*#__PURE__*/function () {
         var monthItemEl = e.target.closest('.vanilla-calendar-months__month');
 
         var clickDefault = function clickDefault() {
-          if (_this3.settings.selection.day && dayEl) {
+          if (['single', 'multiple'].includes(_this3.settings.selection.day) && dayEl) {
             if (!dayPrevEl && !dayNextEl) {
               if (_this3.actions.clickDay) _this3.actions.clickDay(e);
-              _this3.selectedDate = dayEl.dataset.calendarDay;
+
+              if (dayEl.classList.contains('vanilla-calendar-day_selected')) {
+                _this3.selectedDates.splice(_this3.selectedDates.indexOf(dayEl.dataset.calendarDay), 1);
+              } else {
+                if (_this3.settings.selection.day === 'single') {
+                  _this3.selectedDates = [];
+                }
+
+                _this3.selectedDates.push(dayEl.dataset.calendarDay);
+              }
 
               _this3.createDays();
             }
