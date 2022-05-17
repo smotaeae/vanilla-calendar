@@ -13,7 +13,6 @@
 	align-items: center;
 	margin: 60px auto 30px;
 	max-width: 900px;
-	padding: 0 15px;
 	padding-bottom: 50px;
 	scroll-margin-top: 20px;
 	border-bottom: 1px solid #e0e0e0;
@@ -223,51 +222,59 @@ pre.code {
 }
 
 .table {
-	border-spacing: 0;
-	border-collapse: collapse;
-	border: 1px solid #e0e0e0;
-	font-size: 16px;
+	width: 100%;
+	max-width: 100vw;
+	overflow-y: hidden;
+	overflow-x: auto;
 
-	thead {
+	table {
+		border-spacing: 0;
+		border-collapse: collapse;
+		border: 1px solid #e0e0e0;
+		font-size: 16px;
 
-		tr {
-			border-bottom: 1px solid #e0e0e0;
+		thead {
+
+			tr {
+				border-bottom: 1px solid #e0e0e0;
+			}
+
+			th {
+				background-color: oldlace;
+				padding: 10px;
+			}
 		}
 
-		th {
-			background-color: oldlace;
-			padding: 10px;
-		}
-	}
+		th,
+		td {
+			padding: 5px 10px;
+			text-align: left;
+			border-right: 1px solid #e0e0e0;
 
-	th,
-	td {
-		padding: 5px 10px;
-		text-align: left;
-		border-right: 1px solid #e0e0e0;
-
-		&:nth-child(2),
-		&:nth-child(3) {
-			text-align: center;
-			width: 120px;
-		}
-
-		&:last-child {
-			border-right: 0;
-		}
-	}
-
-	tbody {
-
-		tr {
-			border-bottom: 1px solid #e0e0e0;
-
-			&:hover {
-				background-color: whitesmoke;
+			&:nth-child(2),
+			&:nth-child(3) {
+				text-align: center;
+				width: 120px;
 			}
 
 			&:last-child {
-				border-bottom: 0;
+				border-right: 0;
+				min-width: 200px;
+			}
+		}
+
+		tbody {
+
+			tr {
+				border-bottom: 1px solid #e0e0e0;
+
+				&:hover {
+					background-color: whitesmoke;
+				}
+
+				&:last-child {
+					border-bottom: 0;
+				}
 			}
 		}
 	}

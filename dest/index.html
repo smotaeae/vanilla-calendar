@@ -123,156 +123,158 @@
 <section class="section" id="documentation">
   <h2 class="section__h2">Documentation</h2>
   <p class="section__text">The <b>HTMLElement</b> option is mandatory, all other options are optional.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Type</th>
-				<th>Default</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>HTMLElement</td>
-				<td>DOM object</td>
-				<td>null</td>
-				<td>Indicates in which object the calendar will be initialized.</td>
-			</tr>
-			<tr>
-				<td>type</td>
-				<td>String</td>
-				<td>'default'</td>
-				<td>Calendar type. Possible options: 'default', 'month', 'year'.</td>
-			</tr>
-			<tr>
-				<td>date.min</td>
-				<td>String</td>
-				<td>'1970-01-01'</td>
-				<td>The minimum possible date that the calendar will take into account.</td>
-			</tr>
-			<tr>
-				<td>date.max</td>
-				<td>String</td>
-				<td>'2470-12-31'</td>
-				<td>The maximum possible date that the calendar will take into account.</td>
-			</tr>
-			<tr>
-				<td>date.today</td>
-				<td>Date object</td>
-				<td>new Date()</td>
-				<td>Specifies which day the calendar will consider today.</td>
-			</tr>
-			<tr>
-				<td>settings.lang</td>
-				<td>String</td>
-				<td>'en'</td>
-				<td>Indicates what language the labels will be in. The available default options are 'ru' and 'en'. It is also possible to install any other language, see the demo.</td>
-			</tr>
-			<tr>
-				<td>settings.iso8601</td>
-				<td>Boolean</td>
-				<td>true</td>
-				<td>Weeks in ISO 8601 format.</td>
-			</tr>
-			<tr>
-				<td>settings.range.min</td>
-				<td>String</td>
-				<td>null</td>
-				<td>Dates less than this will be considered disabled.</td>
-			</tr>
-			<tr>
-				<td>settings.range.max</td>
-				<td>String</td>
-				<td>null</td>
-				<td>Dates greater than this will be considered disabled.</td>
-			</tr>
-			<tr>
-				<td>settings.range.disabled</td>
-				<td>Array</td>
-				<td>null</td>
-				<td>Force the specified dates to be disabled.</td>
-			</tr>
-			<tr>
-				<td>settings.selection.day</td>
-				<td>String</td>
-				<td>'single'</td>
-				<td>Allow to choose a days. Possible options: 'single', 'multiple'.</td>
-			</tr>
-			<tr>
-				<td>settings.selection.month</td>
-				<td>Boolean</td>
-				<td>true</td>
-				<td>Allow to select a month.</td>
-			</tr>
-			<tr>
-				<td>settings.selection.year</td>
-				<td>Boolean</td>
-				<td>true</td>
-				<td>Allow to select a year.</td>
-			</tr>
-			<tr>
-				<td>settings.selected.dates</td>
-				<td>Array</td>
-				<td>null</td>
-				<td>List of days to be selected.</td>
-			</tr>
-			<tr>
-				<td>settings.selected.month</td>
-				<td>Number</td>
-				<td>null</td>
-				<td>Selected month by default.</td>
-			</tr>
-			<tr>
-				<td>settings.selected.year</td>
-				<td>Number</td>
-				<td>null</td>
-				<td>Selected year by default.</td>
-			</tr>
-			<tr>
-				<td>settings.selected.holidays</td>
-				<td>Array</td>
-				<td>null</td>
-				<td>The specified days will be considered additional days off.</td>
-			</tr>
-			<tr>
-				<td>settings.visibility.weekend</td>
-				<td>Boolean</td>
-				<td>true</td>
-				<td>Highlight the weekend.</td>
-			</tr>
-			<tr>
-				<td>settings.visibility.today</td>
-				<td>Boolean</td>
-				<td>true</td>
-				<td>Highlight the today.</td>
-			</tr>
-			<tr>
-				<td>settings.visibility.disabled</td>
-				<td>Boolean</td>
-				<td>false</td>
-				<td>Show disabled days.</td>
-			</tr>
-			<tr>
-				<td>actions.clickDay</td>
-				<td>Function</td>
-				<td>null</td>
-				<td>The method is triggered after clicking on a day in the calendar, but before other operations.</td>
-			</tr>
-			<tr>
-				<td>actions.clickMonth</td>
-				<td>Function</td>
-				<td>null</td>
-				<td>The method is triggered after clicking on a month in the calendar, but before other operations.</td>
-			</tr>
-			<tr>
-				<td>actions.clickYear</td>
-				<td>Function</td>
-				<td>null</td>
-				<td>The method is triggered after clicking on a year in the calendar, but before other operations.</td>
-			</tr>
-		</tbody>
+	<div class="table">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Default</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>HTMLElement</td>
+					<td>DOM object</td>
+					<td>null</td>
+					<td>Indicates in which object the calendar will be initialized.</td>
+				</tr>
+				<tr>
+					<td>type</td>
+					<td>String</td>
+					<td>'default'</td>
+					<td>Calendar type. Possible options: 'default', 'month', 'year'.</td>
+				</tr>
+				<tr>
+					<td>date.min</td>
+					<td>String</td>
+					<td>'1970-01-01'</td>
+					<td>The minimum possible date that the calendar will take into account.</td>
+				</tr>
+				<tr>
+					<td>date.max</td>
+					<td>String</td>
+					<td>'2470-12-31'</td>
+					<td>The maximum possible date that the calendar will take into account.</td>
+				</tr>
+				<tr>
+					<td>date.today</td>
+					<td>Date object</td>
+					<td>new Date()</td>
+					<td>Specifies which day the calendar will consider today.</td>
+				</tr>
+				<tr>
+					<td>settings.lang</td>
+					<td>String</td>
+					<td>'en'</td>
+					<td>Indicates what language the labels will be in. The available default options are 'ru' and 'en'. It is also possible to install any other language, see the demo.</td>
+				</tr>
+				<tr>
+					<td>settings.iso8601</td>
+					<td>Boolean</td>
+					<td>true</td>
+					<td>Weeks in ISO 8601 format.</td>
+				</tr>
+				<tr>
+					<td>settings.range.min</td>
+					<td>String</td>
+					<td>null</td>
+					<td>Dates less than this will be considered disabled.</td>
+				</tr>
+				<tr>
+					<td>settings.range.max</td>
+					<td>String</td>
+					<td>null</td>
+					<td>Dates greater than this will be considered disabled.</td>
+				</tr>
+				<tr>
+					<td>settings.range.disabled</td>
+					<td>Array</td>
+					<td>null</td>
+					<td>Force the specified dates to be disabled.</td>
+				</tr>
+				<tr>
+					<td>settings.selection.day</td>
+					<td>String</td>
+					<td>'single'</td>
+					<td>Allow to choose a days. Possible options: 'single', 'multiple'.</td>
+				</tr>
+				<tr>
+					<td>settings.selection.month</td>
+					<td>Boolean</td>
+					<td>true</td>
+					<td>Allow to select a month.</td>
+				</tr>
+				<tr>
+					<td>settings.selection.year</td>
+					<td>Boolean</td>
+					<td>true</td>
+					<td>Allow to select a year.</td>
+				</tr>
+				<tr>
+					<td>settings.selected.dates</td>
+					<td>Array</td>
+					<td>null</td>
+					<td>List of days to be selected.</td>
+				</tr>
+				<tr>
+					<td>settings.selected.month</td>
+					<td>Number</td>
+					<td>null</td>
+					<td>Selected month by default.</td>
+				</tr>
+				<tr>
+					<td>settings.selected.year</td>
+					<td>Number</td>
+					<td>null</td>
+					<td>Selected year by default.</td>
+				</tr>
+				<tr>
+					<td>settings.selected.holidays</td>
+					<td>Array</td>
+					<td>null</td>
+					<td>The specified days will be considered additional days off.</td>
+				</tr>
+				<tr>
+					<td>settings.visibility.weekend</td>
+					<td>Boolean</td>
+					<td>true</td>
+					<td>Highlight the weekend.</td>
+				</tr>
+				<tr>
+					<td>settings.visibility.today</td>
+					<td>Boolean</td>
+					<td>true</td>
+					<td>Highlight the today.</td>
+				</tr>
+				<tr>
+					<td>settings.visibility.disabled</td>
+					<td>Boolean</td>
+					<td>false</td>
+					<td>Show disabled days.</td>
+				</tr>
+				<tr>
+					<td>actions.clickDay</td>
+					<td>Function</td>
+					<td>null</td>
+					<td>The method is triggered after clicking on a day in the calendar, but before other operations.</td>
+				</tr>
+				<tr>
+					<td>actions.clickMonth</td>
+					<td>Function</td>
+					<td>null</td>
+					<td>The method is triggered after clicking on a month in the calendar, but before other operations.</td>
+				</tr>
+				<tr>
+					<td>actions.clickYear</td>
+					<td>Function</td>
+					<td>null</td>
+					<td>The method is triggered after clicking on a year in the calendar, but before other operations.</td>
+				</tr>
+			</tbody>
 		</table>
+	</div>
 </section>
 
 <section class="section" id="examples">

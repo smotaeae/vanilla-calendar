@@ -18,9 +18,15 @@
 	padding-left: 15px;
 	padding-right: 15px;
 
-	@media (min-width: 1200px) {
+	@media (min-width: 1180px) {
 		padding-left: calc(50% - 576px);
 		padding-right: calc(50% - 576px);
+	}
+
+	@media (max-width: 1180px) {
+		grid-template-areas: 'main-content';
+		grid-template-columns: 1fr;
+		gap: 0;
 	}
 }
 
@@ -34,6 +40,10 @@
 	left: 0;
 	border-right: 1px solid #e0e0e0;
 	padding: 20px 15px;
+
+	@media (max-width: 1180px) {
+		display: none;
+	}
 }
 
 .main-content {
