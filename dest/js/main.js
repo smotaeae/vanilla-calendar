@@ -193,91 +193,34 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-  calendarEnableInactiveDates.init(); // const six = new VanillaCalendar({
-  // 	HTMLElement: document.querySelector('#six'),
-  // 	date: {
-  // 		today: new Date('2022-01-07'),
-  // 	},
-  // 	settings: {
-  // 		selected: {
-  // 			date: '2022-01-09',
-  // 			month: 1,
-  // 			year: 2022,
-  // 		},
-  // 	},
-  // });
-  // six.init();
-  // const seven = new VanillaCalendar({
-  // 	HTMLElement: document.querySelector('#seven'),
-  // 	date: {
-  // 		today: new Date('2022-01-08'),
-  // 	},
-  // 	settings: {
-  // 		selection: {
-  // 			month: false,
-  // 		},
-  // 		selected: {
-  // 			month: 1,
-  // 			year: 2022,
-  // 		},
-  // 		range: {
-  // 			min: '2022-01-07',
-  // 			max: '2022-02-12',
-  // 			disabled: ['2022-01-12', '2022-01-21', '2022-02-04'],
-  // 		},
-  // 		visibility: {
-  // 			disabled: true,
-  // 		},
-  // 	},
-  // 	actions: {
-  // 		clickDay(e) {
-  // 			alert(e.target.dataset.calendarDay);
-  // 		},
-  // 		clickMonth(e) {
-  // 			alert(e.target.dataset.calendarMonth);
-  // 		},
-  // 		clickYear(e) {
-  // 			alert(e.target.dataset.calendarYear);
-  // 		},
-  // 	},
-  // });
-  // seven.init();
-  // const eight = new VanillaCalendar({
-  // 	HTMLElement: document.querySelector('#eight'),
-  // 	date: {
-  // 		today: new Date('2022-01-08'),
-  // 	},
-  // 	settings: {
-  // 		selected: {
-  // 			month: 1,
-  // 			year: 2022,
-  // 			holidays: ['2022-01-03', '2022-01-04', '2022-01-05', '2022-01-20'],
-  // 		},
-  // 	},
-  // });
-  // eight.init();
-  // const nine = new VanillaCalendar({
-  // 	HTMLElement: document.querySelector('#nine'),
-  // 	type: 'month',
-  // 	// date: {
-  // 	// 	today: new Date('2022-02-08'),
-  // 	// },
-  // 	settings: {
-  // 		selection: {
-  // 			month: false,
-  // 		},
-  // 		// selected: {
-  // 		// 	month: 0,
-  // 		// 	year: 2022,
-  // 		// },
-  // 		// range: {
-  // 		// 	min: '2022-02-07',
-  // 		// 	max: '2040-05-12',
-  // 		// },
-  // 	},
-  // });
-  // nine.init();
-  // Temp
+  calendarEnableInactiveDates.init(); // Scroll
+
+  var smoothScroll = {
+    scroll: function scroll(e) {
+      var id = document.querySelector(e.target.getAttribute('href'));
+      e.preventDefault();
+
+      if (id) {
+        id.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth'
+        });
+      }
+    },
+    hasClick: function hasClick(e) {
+      this.scroll(e);
+    },
+    init: function init() {
+      var _this = this;
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('[data-smooth-scroll="list"] a[href^="#"]')) return;
+
+        _this.hasClick(e);
+      });
+    }
+  };
+  smoothScroll.init(); // Temp
 
   hljs.highlightAll();
 });

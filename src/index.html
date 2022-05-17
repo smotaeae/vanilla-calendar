@@ -14,7 +14,7 @@
     <link href="./css/highlight.min.css" rel="stylesheet">
     <script src="./js/highlight.min.js"></script>
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
+    <!-- <script type="text/javascript" >
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
@@ -26,13 +26,58 @@
           webvisor:true
       });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/88731088" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/88731088" style="position:absolute; left:-9999px;" alt="" /></div></noscript> -->
     <!-- /Yandex.Metrika counter -->
   </head>
 
   <body>
     <div class="wrapper">
       <div class="main-wrapper">
+				<aside class="main-sidebar">
+					<ul class="sidebar-menu" data-smooth-scroll="list">
+						<li class="sidebar-menu__item">
+							<a href="#initialize" class="sidebar-menu__link">Initialize</a>
+						</li>
+						<li class="sidebar-menu__item">
+							<a href="#documentation" class="sidebar-menu__link">Documentation</a>
+						</li>
+						<li class="sidebar-menu__item">
+							<a href="#examples" class="sidebar-menu__link">Examples</a>
+							<ul class="sidebar-submenu">
+								<li class="sidebar-submenu__item">
+									<a href="#calendar-type" class="sidebar-submenu__link">Calendar type</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#calendar-life-cycle" class="sidebar-submenu__link">Calendar life cycle</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#change-language" class="sidebar-submenu__link">Сhange language</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#disable-iso-8601" class="sidebar-submenu__link">Disable ISO 8601</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#date-range" class="sidebar-submenu__link">Date range</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#disable-selection" class="sidebar-submenu__link">Disable selection</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#multiple-select-days" class="sidebar-submenu__link">Multiple select days</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#managing-selected-dates-and-holidays" class="sidebar-submenu__link">Managing selected dates and holidays</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#disable-highlight" class="sidebar-submenu__link">Disable highlight</a>
+								</li>
+								<li class="sidebar-submenu__item">
+									<a href="#show-all-dates" class="sidebar-submenu__link">Show all dates</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</aside>
         <main class="main-content">
 <section class="section section_main">
   <h1 class="section__h1">VANILLA-CALENDAR<span>v1.2.4</span></h1>
@@ -48,7 +93,7 @@
     </li>
   </ul>
   <p class="section__text">A simple yet feature rich calendar with no dependencies and <u>no «input» tag</u>, written in vanilla JavaScript.<br>The size of the minified file .js is approximately <strong>16kb</strong> and <strong>3.5kb</strong> gzip.</p>
-<h2 class="section__h2">Initialize</h2>
+<h2 class="section__h2" id="initialize">Initialize</h2>
 <p class="section__text">Get vanilla-calendar using one of the methods provided.</p>
 <h3 class="section__h3">NPM</h3>
 <pre class="code">
@@ -75,10 +120,165 @@
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="documentation">
+  <h2 class="section__h2">Documentation</h2>
+  <p class="section__text">The <b>HTMLElement</b> option is mandatory, all other options are optional.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Default</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>HTMLElement</td>
+				<td>DOM object</td>
+				<td>null</td>
+				<td>Indicates in which object the calendar will be initialized.</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>String</td>
+				<td>'default'</td>
+				<td>Calendar type. Possible options: 'default', 'month', 'year'.</td>
+			</tr>
+			<tr>
+				<td>date.min</td>
+				<td>String</td>
+				<td>'1970-01-01'</td>
+				<td>The minimum possible date that the calendar will take into account.</td>
+			</tr>
+			<tr>
+				<td>date.max</td>
+				<td>String</td>
+				<td>'2470-12-31'</td>
+				<td>The maximum possible date that the calendar will take into account.</td>
+			</tr>
+			<tr>
+				<td>date.today</td>
+				<td>Date object</td>
+				<td>new Date()</td>
+				<td>Specifies which day the calendar will consider today.</td>
+			</tr>
+			<tr>
+				<td>settings.lang</td>
+				<td>String</td>
+				<td>'en'</td>
+				<td>Indicates what language the labels will be in. The available default options are 'ru' and 'en'. It is also possible to install any other language, see the demo.</td>
+			</tr>
+			<tr>
+				<td>settings.iso8601</td>
+				<td>Boolean</td>
+				<td>true</td>
+				<td>Weeks in ISO 8601 format.</td>
+			</tr>
+			<tr>
+				<td>settings.range.min</td>
+				<td>String</td>
+				<td>null</td>
+				<td>Dates less than this will be considered disabled.</td>
+			</tr>
+			<tr>
+				<td>settings.range.max</td>
+				<td>String</td>
+				<td>null</td>
+				<td>Dates greater than this will be considered disabled.</td>
+			</tr>
+			<tr>
+				<td>settings.range.disabled</td>
+				<td>Array</td>
+				<td>null</td>
+				<td>Force the specified dates to be disabled.</td>
+			</tr>
+			<tr>
+				<td>settings.selection.day</td>
+				<td>String</td>
+				<td>'single'</td>
+				<td>Allow to choose a days. Possible options: 'single', 'multiple'.</td>
+			</tr>
+			<tr>
+				<td>settings.selection.month</td>
+				<td>Boolean</td>
+				<td>true</td>
+				<td>Allow to select a month.</td>
+			</tr>
+			<tr>
+				<td>settings.selection.year</td>
+				<td>Boolean</td>
+				<td>true</td>
+				<td>Allow to select a year.</td>
+			</tr>
+			<tr>
+				<td>settings.selected.dates</td>
+				<td>Array</td>
+				<td>null</td>
+				<td>List of days to be selected.</td>
+			</tr>
+			<tr>
+				<td>settings.selected.month</td>
+				<td>Number</td>
+				<td>null</td>
+				<td>Selected month by default.</td>
+			</tr>
+			<tr>
+				<td>settings.selected.year</td>
+				<td>Number</td>
+				<td>null</td>
+				<td>Selected year by default.</td>
+			</tr>
+			<tr>
+				<td>settings.selected.holidays</td>
+				<td>Array</td>
+				<td>null</td>
+				<td>The specified days will be considered additional days off.</td>
+			</tr>
+			<tr>
+				<td>settings.visibility.weekend</td>
+				<td>Boolean</td>
+				<td>true</td>
+				<td>Highlight the weekend.</td>
+			</tr>
+			<tr>
+				<td>settings.visibility.today</td>
+				<td>Boolean</td>
+				<td>true</td>
+				<td>Highlight the today.</td>
+			</tr>
+			<tr>
+				<td>settings.visibility.disabled</td>
+				<td>Boolean</td>
+				<td>false</td>
+				<td>Show disabled days.</td>
+			</tr>
+			<tr>
+				<td>actions.clickDay</td>
+				<td>Function</td>
+				<td>null</td>
+				<td>The method is triggered after clicking on a day in the calendar, but before other operations.</td>
+			</tr>
+			<tr>
+				<td>actions.clickMonth</td>
+				<td>Function</td>
+				<td>null</td>
+				<td>The method is triggered after clicking on a month in the calendar, but before other operations.</td>
+			</tr>
+			<tr>
+				<td>actions.clickYear</td>
+				<td>Function</td>
+				<td>null</td>
+				<td>The method is triggered after clicking on a year in the calendar, but before other operations.</td>
+			</tr>
+		</tbody>
+		</table>
+</section>
+
+<section class="section" id="examples">
   <h2 class="section__h2">Examples</h2>
   <p class="section__text">Below will be shown examples of using this calendar with various options.</p>
-  <p class="section__text">First, let's define the type of calendar. We will also add the appropriate method that will catch a click on the element.</p>
+  <p class="section__text" id="calendar-type">First, let's define the type of calendar. We will also add the appropriate method that will catch a click on the element.</p>
   <div class="calendars">
     <div class="calendars__calendar">
       <span class="tag">Type: month</span>
@@ -131,7 +331,7 @@ calendarYear.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="calendar-life-cycle">
   <h2 class="section__h2">Calendar life cycle</h2>
   <p class="section__text">This is the main data that the calendar will take into account.</p>
   <div class="calendars">
@@ -165,7 +365,7 @@ otherToday.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="change-language">
   <h2 class="section__h2">Сhange language</h2>
   <p class="section__text">By default, only two languages are available - English and Russian. You can add any language, for example Kazakh.</p>
   <div class="calendars">
@@ -203,7 +403,7 @@ calendarOtherLang.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="disable-iso-8601">
   <h2 class="section__h2">Disable ISO 8601</h2>
   <p class="section__text">By default, the week starts on Monday, you can change this and make Sunday the first day.</p>
   <div class="vanilla-calendar" id="calendar-iso8601"></div>
@@ -217,7 +417,7 @@ calendarISO8601.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="date-range">
   <h2 class="section__h2">Date range</h2>
   <p class="section__text">Manage minimum, maximum, as well as forcibly disabled dates.</p>
   <div class="calendars">
@@ -264,7 +464,7 @@ calendarDisabledDates.init();
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="disable-selection">
   <h2 class="section__h2">Disable selection</h2>
   <p class="section__text">You can disable the ability to select the day, month, or year.</p>
   <div class="calendars">
@@ -316,7 +516,7 @@ calendarDisableSelectionYear.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="multiple-select-days">
   <h2 class="section__h2">Multiple select days</h2>
   <p class="section__text">Initially, you can select only one day. Fix it if necessary.</p>
   <div class="vanilla-calendar" id="calendar-multiple-select-days"></div>
@@ -332,7 +532,7 @@ calendarMultipleSelectDays.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="managing-selected-dates-and-holidays">
   <h2 class="section__h2">Managing selected dates and holidays</h2>
   <p class="section__text">You can explicitly specify the selected days, month and year displayed, regardless of the current date.</p>
   <div class="calendars">
@@ -388,7 +588,7 @@ calendarSelectedHolidays.init();
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="disable-highlight">
   <h2 class="section__h2">Disable highlight</h2>
   <p class="section__text">You can turn off the highlight of the weekend and today.</p>
   <div class="calendars">
@@ -425,7 +625,7 @@ calendarDisableHighlightToday.init();</code>
 </pre>
 </section>
 
-<section class="section">
+<section class="section" id="show-all-dates">
   <h2 class="section__h2">Show all dates</h2>
   <p class="section__text">By default, inactive dates will be hidden, enable if you want to show inactive dates.</p>
   <div class="vanilla-calendar" id="calendar-enable-inactive-dates"></div>
