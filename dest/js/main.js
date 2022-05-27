@@ -1,4 +1,14 @@
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["my-library"] = factory();
+	else
+		root["my-library"] = factory();
+})(self, () => {
+return /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 /* eslint-disable no-alert */
 
@@ -222,5 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   smoothScroll.init();
 });
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});

@@ -33,7 +33,7 @@ The calendar can be manually included in an HTML page and then initialized via g
 CDN
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.5/vanilla-calendar.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.6/vanilla-calendar.min.css" rel="stylesheet">
 ```
 
 or locally
@@ -46,7 +46,7 @@ or locally
 CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.5/vanilla-calendar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.6/vanilla-calendar.min.js"></script>
 ```
 
 or locally

@@ -133,6 +133,8 @@ function js(cb) {
 					mode: isDevelopment() ? 'development' : 'production',
 					output: {
 						filename: file.replace(paths.js.src.catalog, ''),
+						library: 'my-library',
+						libraryTarget: 'umd',
 					},
 					target: 'web',
 					devtool: isDevelopment() ? 'inline-source-map' : false,
@@ -177,6 +179,8 @@ function jsMinify(cb) {
 					mode: isDevelopment() ? 'development' : 'production',
 					output: {
 						filename: file.replace(paths.js.src.catalog, ''),
+						library: 'my-library',
+						libraryTarget: 'umd',
 					},
 					target: 'web',
 					devtool: isDevelopment() ? 'inline-source-map' : false,
