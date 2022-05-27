@@ -245,7 +245,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 	};
 	smoothScroll.init();
-
-	// Temp
-	hljs.highlightAll();
 });

@@ -1,10 +1,29 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/* unused harmony export default */
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -260,7 +279,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
 
       var selectedMonth = function selectedMonth() {
         var year = _this2.selectedYear;
-        var month = _this2.selectedMonth < 10 ? "0".concat(_this2.selectedMonth + 1) : _this2.selectedMonth + 1;
+        var month = _this2.selectedMonth < 9 ? "0".concat(_this2.selectedMonth + 1) : _this2.selectedMonth + 1;
 
         var _loop = function _loop(i) {
           var dayEl = document.createElement('span');
@@ -573,4 +592,7 @@ var VanillaCalendar = /*#__PURE__*/function () {
   return VanillaCalendar;
 }();
 
-exports.default = VanillaCalendar;
+
+window.VanillaCalendar = VanillaCalendar;
+/******/ })()
+;

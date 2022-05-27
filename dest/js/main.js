@@ -1,5 +1,5 @@
-"use strict";
-
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
 /* eslint-disable no-alert */
 
 /* eslint-disable no-undef */
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   };
-  smoothScroll.init(); // Temp
-
-  hljs.highlightAll();
+  smoothScroll.init();
 });
+/******/ })()
+;

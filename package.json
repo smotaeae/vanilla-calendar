@@ -1,6 +1,6 @@
 {
   "name": "@uvarov.frontend/vanilla-calendar",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Vanilla JS calendar without using additional packages.",
   "homepage": "https://vanilla-calendar.frontend.uvarov.tech/",
   "keywords": [
@@ -38,28 +38,40 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/runtime": "^7.18.0",
+    "babel-loader": "^8.2.5",
     "browser-sync": "^2.27.9",
     "del": "^6.0.0",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "ftp-deploy": "^2.4.2",
+    "glob": "^8.0.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
-    "gulp-babel": "^8.0.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-node-env": "^2.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
-    "gulp-uglify": "^3.0.2",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-strip-css-comments": "^2.0.0",
     "sass": "^1.51.0",
     "stylelint": "^14.7.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-prettier": "^2.0.0",
-    "stylelint-scss": "^4.2.0"
+    "stylelint-scss": "^4.2.0",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.72.1",
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
-    "highlight.js": "^11.5.1"
+    "highlight.js": "^11.5.1",
+    "normalize.css": "^8.0.1"
   }
 }

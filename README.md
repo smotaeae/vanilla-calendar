@@ -28,15 +28,30 @@ Import base styles in your file.
 
 The calendar can be manually included in an HTML page and then initialized via global browser variables.
 
-#### head
+#### `<head>`
+
+CDN
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.5/vanilla-calendar.min.css" rel="stylesheet">
+```
+
+or locally
 
 ```html
 <link href="./vanilla-calendar.min.css" rel="stylesheet">
 ```
-#### head or end body
+#### `<head>` or end `<body>`
+
+CDN
 
 ```html
-<script>var exports = {}</script>
+<script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.5/vanilla-calendar.min.js"></script>
+```
+
+or locally
+
+```html
 <script src="./vanilla-calendar.min.js"></script>
 ```
 

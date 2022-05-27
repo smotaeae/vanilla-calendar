@@ -9,12 +9,11 @@
     <meta name="description" content="Vanilla js calendar without using additional packages">
     <meta name="keywords" content="vanilla, js, calendar, lite">
     <link rel="shortcut icon" href="./favicon.svg">
+    <link href="./css/vendor.min.css" rel="stylesheet">
     <link href="./css/modules/vanilla-calendar.min.css" rel="stylesheet">
     <link href="./css/main.min.css" rel="stylesheet">
-    <link href="./css/highlight.min.css" rel="stylesheet">
-    <script src="./js/highlight.min.js"></script>
     <!-- Yandex.Metrika counter -->
-    <!-- <script type="text/javascript" >
+    <script type="text/javascript" >
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
@@ -26,7 +25,7 @@
           webvisor:true
       });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/88731088" style="position:absolute; left:-9999px;" alt="" /></div></noscript> -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/88731088" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
   </head>
 
@@ -80,7 +79,7 @@
 				</aside>
         <main class="main-content">
 <section class="section section_main">
-  <h1 class="section__h1">VANILLA-CALENDAR<span>v1.2.4</span></h1>
+  <h1 class="section__h1">VANILLA-CALENDAR<span>v1.2.5</span></h1>
   <ul class="menu-list">
     <li class="menu-list__item">
       <a href="https://github.com/uvarov-frontend/vanilla-calendar" class="menu-list__link">GitHub</a>
@@ -109,14 +108,23 @@
 </pre>
 <h3 class="section__h3">or Script tag</h3>
 <p class="section__text">The calendar can be manually included in an HTML page and then initialized via global browser variables.</p>
-<span class="tag">head</span>
+<span class="tag">&lt;head></span>
+<p class="section__text">CDN</p>
+<pre class="code">
+<code class="language-html">&lt;link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.5/vanilla-calendar.min.css" rel="stylesheet"></code>
+</pre>
+<p class="section__text">or locally</p>
 <pre class="code">
 <code class="language-html">&lt;link href="./vanilla-calendar.min.css" rel="stylesheet"></code>
 </pre>
-<span class="tag">head or end body</span>
+<span class="tag">&lt;head> or end &lt;body></span>
+<p class="section__text">CDN</p>
 <pre class="code">
-<code class="language-html">&lt;script>var exports = {}&lt;/script>
-&lt;script src="./vanilla-calendar.min.js">&lt;/script></code>
+<code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar@1.2.5/vanilla-calendar.min.js">&lt;/script></code>
+</pre>
+<p class="section__text">or locally</p>
+<pre class="code">
+<code class="language-html">&lt;script src="./vanilla-calendar.min.js">&lt;/script></code>
 </pre>
 </section>
 
@@ -652,9 +660,9 @@ calendarEnableInactiveDates.init();</code></pre>
         </main>
       </div>
     </div>
-    <script>var exports = {}</script>
-    <script src="./js/modules/vanilla-calendar.min.js"></script>
-    <script src="./js/main.min.js"></script>
+		<script src="./js/vendor.min.js" defer></script>
+    <script src="./js/modules/vanilla-calendar.min.js" defer></script>
+    <script src="./js/main.min.js" defer></script>
   </body>
 
 </html>

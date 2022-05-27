@@ -284,7 +284,7 @@ export default class VanillaCalendar {
 
 		const selectedMonth = () => {
 			const year = this.selectedYear;
-			const month = this.selectedMonth < 10 ? `0${this.selectedMonth + 1}` : this.selectedMonth + 1;
+			const month = this.selectedMonth < 9 ? `0${this.selectedMonth + 1}` : this.selectedMonth + 1;
 
 			for (let i = 1; i <= daysSelectedMonth; i++) {
 				const dayEl = document.createElement('span');
@@ -573,3 +573,5 @@ export default class VanillaCalendar {
 		this.click();
 	}
 }
+
+window.VanillaCalendar = VanillaCalendar;
