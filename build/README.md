@@ -1,4 +1,4 @@
-# Vanilla JS Calendar
+# Vanilla JS Calendar v1.2.6
 
 Vanilla JS calendar without using additional packages. [DEMO](https://vanilla-calendar.frontend.uvarov.tech/)
 

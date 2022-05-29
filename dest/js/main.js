@@ -14,6 +14,10 @@ var __webpack_exports__ = {};
 
 /* eslint-disable no-undef */
 document.addEventListener('DOMContentLoaded', function () {
+  var calendar = new VanillaCalendar({
+    HTMLElement: document.querySelector('#calendar')
+  });
+  calendar.init();
   var calendarMonth = new VanillaCalendar({
     HTMLElement: document.querySelector('#calendar-month'),
     type: 'month',
@@ -26,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   calendarMonth.init();
   var calendarDefault = new VanillaCalendar({
     HTMLElement: document.querySelector('#calendar-default'),
+    type: 'default',
     actions: {
       clickDay: function clickDay(e) {
         alert(e.target.dataset.calendarDay);

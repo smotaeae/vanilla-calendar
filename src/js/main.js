@@ -2,6 +2,11 @@
 /* eslint-disable no-undef */
 
 document.addEventListener('DOMContentLoaded', () => {
+	const calendar = new VanillaCalendar({
+		HTMLElement: document.querySelector('#calendar'),
+	});
+	calendar.init();
+
 	const calendarMonth = new VanillaCalendar({
 		HTMLElement: document.querySelector('#calendar-month'),
 		type: 'month',
@@ -15,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const calendarDefault = new VanillaCalendar({
 		HTMLElement: document.querySelector('#calendar-default'),
+		type: 'default',
 		actions: {
 			clickDay(e) {
 				alert(e.target.dataset.calendarDay);
