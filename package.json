@@ -9,10 +9,10 @@
     "javascript",
     "vanilla",
     "vanilla-js",
-		"picker",
-		"date-picker",
-		"datepicker",
-		"iso8601"
+    "picker",
+    "date-picker",
+    "datepicker",
+    "iso8601"
   ],
   "repository": {
     "type": "git",
@@ -29,8 +29,7 @@
     "clean": "gulp clean",
     "dest": "gulp dest",
     "build": "gulp build",
-    "start": "gulp start",
-    "ftp": "gulp ftp"
+    "start": "gulp start"
   },
   "browserslist": [
     "> 1%",
@@ -43,11 +42,12 @@
     "@babel/preset-env": "^7.18.0",
     "@babel/runtime": "^7.18.0",
     "babel-loader": "^8.2.5",
-    "browser-sync": "^2.27.9",
-    "del": "^6.0.0",
+    "browser-sync": "^2.27.10",
+    "del": "^6.1.1",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "ftp": "^0.3.10",
     "ftp-deploy": "^2.4.2",
     "glob": "^8.0.3",
     "gulp": "^4.0.2",
@@ -59,7 +59,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-strip-css-comments": "^2.0.0",
-    "sass": "^1.51.0",
+    "sass": "^1.52.1",
     "stylelint": "^14.7.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",

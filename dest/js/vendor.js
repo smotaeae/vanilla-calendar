@@ -58465,10 +58465,12 @@ var lib = __webpack_require__(8128);
 
 ;// CONCATENATED MODULE: ./src/js/vendor.js
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Temp
-  es.highlightAll();
+
+document.addEventListener('DOMContentLoaded', () => {
+	// Temp
+	es.highlightAll();
 });
+
 })();
 
 /******/ 	return __webpack_exports__;

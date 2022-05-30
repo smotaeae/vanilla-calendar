@@ -20,7 +20,7 @@ const {
 	isDevelopment,
 } = require('gulp-node-env');
 
-const ftp = require('./.ftp');
+//const ftp = require('./.ftp');
 
 const paths = {
 	src: 'src/*.*',
@@ -79,21 +79,22 @@ function server(done) {
 	done();
 }
 
-function deploy() {
-	return new FtpDeploy().deploy({
-		user: ftp.user,
-		password: ftp.password,
-		host: ftp.host,
-		port: ftp.port,
-		remoteRoot: ftp.root,
-		localRoot: paths.dest,
-		include: ['.*', '*', '**/*'],
-		exclude: ['.DS_Store'],
-		deleteRemote: true,
-		forcePasv: true,
-		sftp: false,
-	});
-}
+
+// function deploy() {
+// 	return new FtpDeploy().deploy({
+// 		user: ftp.user,
+// 		password: ftp.password,
+// 		host: ftp.host,
+// 		port: ftp.port,
+// 		remoteRoot: ftp.root,
+// 		localRoot: paths.dest,
+// 		include: ['.*', '*', '**/*'],
+// 		exclude: ['.DS_Store'],
+// 		deleteRemote: true,
+// 		forcePasv: true,
+// 		sftp: false,
+// 	});
+// }
 
 // Tasks
 function clean() {
@@ -285,7 +286,7 @@ exports.dest = gulp.series(setDevelopmentEnvironment, dest);
 exports.build = gulp.series(setProductionEnvironment, build);
 exports.start = gulp.series(setDevelopmentEnvironment, start);
 exports.watch = gulp.series(setDevelopmentEnvironment, watch);
-exports.ftp = deploy;
+//exports.ftp = deploy;
 exports.js = js;
 exports.copy = copy;
 

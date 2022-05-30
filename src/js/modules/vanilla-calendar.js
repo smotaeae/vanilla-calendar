@@ -111,8 +111,8 @@ export default class VanillaCalendar {
 					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
 				</button>
 				<div class="vanilla-calendar-header__content">
-					<b class="vanilla-calendar-month${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></b>
 					<b class="vanilla-calendar-year${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></b>
+					<b class="vanilla-calendar-month${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></b>
 				</div>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
@@ -136,8 +136,8 @@ export default class VanillaCalendar {
 					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
 				</button>
 				<div class="vanilla-calendar-header__content">
-					<b class="vanilla-calendar-month"></b>
 					<b class="vanilla-calendar-year vanilla-calendar-year_not-active${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></b>
+					<b class="vanilla-calendar-month"></b>
 				</div>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next"
@@ -159,8 +159,8 @@ export default class VanillaCalendar {
 					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
 				</button>
 				<div class="vanilla-calendar-header__content">
-					<b class="vanilla-calendar-month vanilla-calendar-month_not-active${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></b>
 					<b class="vanilla-calendar-year"></b>
+					<b class="vanilla-calendar-month vanilla-calendar-month_not-active${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></b>
 				</div>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
@@ -231,9 +231,7 @@ export default class VanillaCalendar {
 
 	createWeek() {
 		const weekEl = this.HTMLElement.querySelector('.vanilla-calendar-week');
-
-		const week = this.name.week[this.settings.lang];
-		
+		const week = [...this.name.week[this.settings.lang]];
 		week.push(week.shift());
 
 		for (let i = 0; i < week.length; i++) {
