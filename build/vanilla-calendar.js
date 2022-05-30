@@ -128,7 +128,8 @@ var VanillaCalendar = /*#__PURE__*/function () {
       months: {
         full: {
           en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+          ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+          ro: ['Ianuarie','Februarie','Martie','Aprilie','Mai”, „Iunie”, „Iulie”, „August”, „Septembrie”, „Octombrie”, „Noiembrie”, „Decembrie” ],
         },
         reduction: {
           en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
