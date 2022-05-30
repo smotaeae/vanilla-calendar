@@ -42,28 +42,38 @@ export default class VanillaCalendar {
 				full: {
 					en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 					ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+					ro: ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'],
+					pt: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ],
 				},
 				reduction: {
 					en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 					ru: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+					ro: ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Noi', 'Dec'],
+					pt: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dec' ],
+
 				},
 			},
 			week: {
 				en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 				ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+				ro: ['Du', 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sa'],
+				pt: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
 			},
 			arrow: {
 				prev: {
 					en: 'Prev',
 					ru: 'Назад',
+					ro: 'Anterior',
+					pt: 'Anterior',
 				},
 				next: {
 					en: 'Next',
 					ru: 'Вперед',
+					ro: 'Următorul',
+					pt: 'Seguinte',
 				},
 			},
 		};
-
 		this.currentType = this.type;
 	}
 
@@ -223,6 +233,7 @@ export default class VanillaCalendar {
 		const weekEl = this.HTMLElement.querySelector('.vanilla-calendar-week');
 
 		const week = this.name.week[this.settings.lang];
+		
 		week.push(week.shift());
 
 		for (let i = 0; i < week.length; i++) {
