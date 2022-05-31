@@ -156,13 +156,12 @@ class VanillaCalendar {
 			this.HTMLElement.classList.remove('vanilla-calendar_year');
 			this.HTMLElement.innerHTML = `
 			<div class="vanilla-calendar-header">
-				<button type="button"
-					class="vanilla-calendar-arrow vanilla-calendar-arrow_prev">
+				<button type="button" class="vanilla-calendar-arrow vanilla-calendar-arrow_prev">
 					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
 				</button>
 				<div class="vanilla-calendar-header__content">
-					<b class="vanilla-calendar-year${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></b>
-					<b class="vanilla-calendar-month${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></b>
+					<div class="vanilla-calendar-year${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></div>
+					<div class="vanilla-calendar-month${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></div>
 				</div>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
@@ -186,8 +185,8 @@ class VanillaCalendar {
 					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
 				</button>
 				<div class="vanilla-calendar-header__content">
-					<b class="vanilla-calendar-year vanilla-calendar-year_not-active${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></b>
-					<b class="vanilla-calendar-month"></b>
+					<div class="vanilla-calendar-year vanilla-calendar-year_not-active${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></div>
+					<div class="vanilla-calendar-month"></div>
 				</div>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next"
@@ -209,8 +208,8 @@ class VanillaCalendar {
 					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
 				</button>
 				<div class="vanilla-calendar-header__content">
-					<b class="vanilla-calendar-year"></b>
-					<b class="vanilla-calendar-month vanilla-calendar-month_not-active${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></b>
+					<div class="vanilla-calendar-year"></div>
+					<div class="vanilla-calendar-month vanilla-calendar-month_not-active${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></div>
 				</div>
 				<button type="button"
 					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
