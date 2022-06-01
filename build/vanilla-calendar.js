@@ -52,6 +52,7 @@ class VanillaCalendar {
 	constructor(option) {
 		this.HTMLElement = option.HTMLElement;
 		this.type = option.type ?? 'default';
+		this.title = option.title ?? '';
 		this.date = {
 			min: option.date?.min ?? '1970-01-01',
 			max: option.date?.max ?? '2470-12-31',
@@ -71,6 +72,7 @@ class VanillaCalendar {
 				year: option.settings?.selection?.year ?? true,
 			},
 			selected: {
+				active: option.settings?.selected?.active ?? null,
 				dates: option.settings?.selected?.dates ?? null,
 				month: option.settings?.selected?.month ?? null,
 				year: option.settings?.selected?.year ?? null,
@@ -125,9 +127,11 @@ class VanillaCalendar {
 			},
 		};
 		this.currentType = this.type;
+		this.currentTitle = this.title;
 	}
 
 	setVariablesDates() {
+		this.activeDates = [];
 		this.selectedDates = [];
 		this.selectedMonth = this.date.today.getMonth();
 		this.selectedYear = this.date.today.getFullYear();
@@ -135,6 +139,9 @@ class VanillaCalendar {
 		if (this.settings.selected.dates !== null) {
 			this.selectedDates = this.settings.selected.dates;
 		}
+		if (this.settings.selected.active !== null) {
+			this.activeDates = this.settings.selected.active;
+		} 
 
 		if (this.settings.selected.month !== null && this.settings.selected.month >= 0 && this.settings.selected.month < 12) {
 			this.selectedMonth = this.settings.selected.month;
@@ -155,18 +162,23 @@ class VanillaCalendar {
 			this.HTMLElement.classList.remove('vanilla-calendar_month');
 			this.HTMLElement.classList.remove('vanilla-calendar_year');
 			this.HTMLElement.innerHTML = `
-			<div class="vanilla-calendar-header">
-				<button type="button" class="vanilla-calendar-arrow vanilla-calendar-arrow_prev">
-					${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
-				</button>
-				<div class="vanilla-calendar-header__content">
-					<div class="vanilla-calendar-year${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></div>
-					<div class="vanilla-calendar-month${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></div>
+			<div class="vanilla-calendar-header vanilla-calendar-header-main">
+				<div class="vanilla-calendar-header-title">
+					${this.currentTitle}
 				</div>
-				<button type="button"
-					class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
-					${this.name.arrow.next[this.settings.lang] ?? this.name.arrow.next.en}
-				</button>
+				<div class="vanilla-calendar-header-controls">
+					<button type="button" class="vanilla-calendar-arrow vanilla-calendar-arrow_prev">
+						${this.name.arrow.prev[this.settings.lang] ?? this.name.arrow.prev.en}
+					</button>
+					<div class="vanilla-calendar-header__content">
+						<div class="vanilla-calendar-year${this.settings.selection.year ? '' : ' vanilla-calendar-year_disabled'}"></div>
+						<div class="vanilla-calendar-month${this.settings.selection.month ? '' : ' vanilla-calendar-month_disabled'}"></div>
+					</div>
+					<button type="button"
+						class="vanilla-calendar-arrow vanilla-calendar-arrow_next">
+						${this.name.arrow.next[this.settings.lang] ?? this.name.arrow.next.en}
+					</button>
+				</div>
 			</div>
 			<div class="vanilla-calendar-content">
 				<div class="vanilla-calendar-week"></div>
@@ -381,6 +393,10 @@ class VanillaCalendar {
 				// if selected day
 				if (this.selectedDates.find((selectedDate) => selectedDate === date)) {
 					dayEl.classList.add('vanilla-calendar-day_selected');
+				}
+				// if active day
+				if (this.activeDates.find((selectedDate) => selectedDate === date)) {
+					dayEl.classList.add('vanilla-calendar-day_active');
 				}
 
 				// if range min/max
