@@ -2,17 +2,20 @@
 	$calendar: &;
 
 	width: 260px;
-	display: flex;
-	flex-direction: column;
+	min-width: min-content;
+	display: grid;
+	grid-template-areas: 'header header' 'column content';
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto 1fr;
 	background-color: white;
 	padding: 12px;
 	border-radius: 4px;
 
 	&-header {
+		grid-area: header;
 		display: flex;
 		align-items: center;
 		margin-bottom: 10px;
-		padding: 0 4px;
 
 		&__content {
 			flex-grow: 1;
@@ -26,7 +29,36 @@
 		}
 	}
 
+	&-column {
+		grid-area: column;
+		display: flex;
+		flex-direction: column;
+		margin-right: 5px;
+
+		&__title {
+			font-size: 12px;
+			line-height: 16px;
+			font-weight: 700;
+			color: lightseagreen;
+			width: 25px;
+			height: 25px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&__content {
+			display: grid;
+			grid-auto-flow: row;
+			column-gap: 5px;
+			align-items: center;
+			justify-items: center;
+			flex-grow: 1;
+		}
+	}
+
 	&-content {
+		grid-area: content;
 		display: flex;
 		flex-direction: column;
 	}
@@ -37,6 +69,11 @@
 		font-size: 0;
 		width: 14px;
 		height: 14px;
+		padding: 0;
+		outline: 0;
+		border: 0;
+		background-color: transparent;
+		cursor: pointer;
 
 		&::before {
 			content: '';
@@ -136,6 +173,21 @@
 				color: coral;
 			}
 		}
+
+		// &-numbers {
+		// }
+
+		&-number {
+			font-size: 12px;
+			line-height: 16px;
+			font-weight: 700;
+			color: lightseagreen;
+			width: 25px;
+			height: 25px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
 
 	&-days {
@@ -143,13 +195,13 @@
 		grid-template-columns: repeat(7, 1fr);
 		column-gap: 5px;
 		justify-items: center;
+		align-items: center;
+		flex-grow: 1;
 
 		&_selecting {
 			#{$calendar}-day {
 				cursor: pointer;
 
-				&_prev,
-				&_next,
 				&_disabled {
 					cursor: default;
 				}
@@ -160,6 +212,7 @@
 	&-day {
 		$day: &;
 
+		position: relative;
 		font-size: 12px;
 		line-height: 16px;
 		font-weight: 400;
@@ -174,6 +227,11 @@
 
 		&:hover {
 			background-color: aliceblue;
+
+			#{$day}__popup {
+				opacity: 1;
+				pointer-events: auto;
+			}
 		}
 
 		&_today {
@@ -185,6 +243,12 @@
 				color: lightseagreen;
 				background-color: aliceblue;
 			}
+
+			&#{$day}_prev,
+			&#{$day}_next {
+				background-color: whitesmoke;
+				color: lightgrey;
+			}
 		}
 
 		&_selected {
@@ -194,6 +258,17 @@
 			&:hover {
 				background-color: lightseagreen;
 				color: white;
+			}
+
+			&#{$day}_prev,
+			&#{$day}_next {
+				background-color: whitesmoke;
+				color: grey;
+
+				&:hover {
+					background-color: whitesmoke;
+					color: grey;
+				}
 			}
 		}
 
@@ -213,6 +288,12 @@
 					color: lightgrey;
 					background-color: whitesmoke;
 				}
+
+				&#{$day}_prev,
+				&#{$day}_next {
+					background-color: whitesmoke;
+					color: lightgrey;
+				}
 			}
 
 			&#{$day}_selected {
@@ -223,10 +304,21 @@
 					background-color: coral;
 				}
 
-				&#{$day}_disabled {
-					color: whitesmoke;
-					background-color: lightgrey;
+				&#{$day}_prev,
+				&#{$day}_next {
+					background-color: whitesmoke;
+					color: grey;
+
+					&:hover {
+						background-color: whitesmoke;
+						color: grey;
+					}
 				}
+			}
+
+			&#{$day}_prev,
+			&#{$day}_next {
+				color: lightgrey;
 			}
 		}
 
@@ -235,11 +327,59 @@
 		&_disabled {
 			background-color: white;
 			color: lightgrey;
-			pointer-events: none;
 
 			&:hover {
 				background-color: white;
 				color: lightgrey;
+			}
+		}
+
+		&_disabled {
+			pointer-events: none;
+		}
+
+		&__popup {
+			position: absolute;
+			z-index: 2;
+			left: 50%;
+			top: 100%;
+			transform: translateX(-50%);
+			width: 130px;
+			padding: 16px 12px 8px;
+			color: black;
+			font-size: 12px;
+			line-height: 14px;
+			font-weight: 400;
+			opacity: 0;
+			pointer-events: none;
+
+			&::before {
+				content: '';
+				position: absolute;
+				z-index: -1;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: calc(100% - 8px);
+				display: block;
+				border-radius: 4px;
+				background-color: white;
+				box-shadow: 0 2px 20px rgb(0 0 0 / 10%);
+			}
+
+			&::after {
+				content: '';
+				position: absolute;
+				z-index: -1;
+				left: 50%;
+				transform: translateX(-50%);
+				top: 2px;
+				display: block;
+				height: 0;
+				width: 0;
+				border-color: transparent transparent white;
+				border-style: solid;
+				border-width: 0 10px 8px;
 			}
 		}
 	}
