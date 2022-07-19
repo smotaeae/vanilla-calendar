@@ -287,12 +287,14 @@ export default class VanillaCalendar {
 		// eslint-disable-next-line no-restricted-syntax
 		for (const day in this.popups) {
 			if (Object.hasOwnProperty.call(this.popups, day)) {
-				const dayEl = daysEl.querySelector(`[data-calendar-day="${day}"]`);
-				if (!dayEl) return;
-
+				const dayEl = this.HTMLElement.querySelectorAll(`[data-calendar-day="${day}"]`);
+				if (!dayEl)  return;
 				const dayInfo = this.popups[day];
-				dayEl.classList.add(dayInfo.modifier);
-				dayEl.innerHTML += `<div class="vanilla-calendar-day__popup">${dayInfo.html}</div>`;
+				for(var i =0; i<dayEl.length ; i++){
+					let dayItem = dayEl[i];
+					dayItem.classList.add(dayInfo.modifier);
+					dayItem.innerHTML += `<div class="vanilla-calendar-day__popup">${dayInfo.html}</div>`;
+				}
 			}
 		}
 	}
